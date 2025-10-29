@@ -1,14 +1,31 @@
 package com.songify.song.domain.repository;
 
 import com.songify.song.domain.model.Song;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.Repository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
-public interface SongRepository extends Repository<Song, Long> {
+public interface SongRepository extends CrudRepository<Song, Long> {
 
     Song save(Song song);
 
     List<Song> findAll();
+
+        Optional<Song> findById(Long id);
+
+        void deleteById(Long id);
+
+        @Modifying
+        @Query("UPDATE Song s SET s.name = :#{#song.name}, s.artist = :#{#song.artist} WHERE s.id = :id")
+        void updateById(@Param("id") Long id, @Param("song") Song song);
+
+
+
+
 }

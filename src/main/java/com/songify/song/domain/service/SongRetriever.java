@@ -1,8 +1,8 @@
 package com.songify.song.domain.service;
 
 import com.songify.song.domain.model.Song;
+import com.songify.song.domain.model.SongNotFoundException;
 import com.songify.song.domain.repository.SongRepository;
-import com.songify.song.domain.repository.SongRepositoryInMemory;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,5 +30,12 @@ public class SongRetriever {
                 .limit(limit)
                 .collect(Collectors.toList());
     }
+
+    public Song findById(Long id) {
+        return songRepository.findById(id).orElseThrow(
+                () -> new SongNotFoundException("Song with id " + id + " not found")
+        );
+    }
+
 
 }

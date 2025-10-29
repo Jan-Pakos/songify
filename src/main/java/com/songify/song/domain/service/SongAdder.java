@@ -11,7 +11,7 @@ public class SongAdder {
 
     private final SongRepository songRepository;
 
-    SongAdder(SongRepository songRepository) {
+    public SongAdder(SongRepository songRepository) {
         this.songRepository = songRepository;
     }
 

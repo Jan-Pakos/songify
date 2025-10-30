@@ -2,13 +2,13 @@ package com.songify.song.domain.model;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Builder
 @Entity
-@Getter
-@Setter
+@Data
 @Table(name = "song")
 public class Song {
 
@@ -17,13 +17,13 @@ public class Song {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "artist", nullable = false)
-    String artist;
-
     @Column(name = "name", nullable = false)
     String name;
 
-    public Song(String artist, String name) {
+    @Column(name = "artist", nullable = false)
+    String artist;
+
+    public Song(String name, String artist) {
         this.artist = artist;
         this.name = name;
     }
@@ -32,7 +32,7 @@ public class Song {
 
     }
 
-    public Song(Long id, String artist, String name) {
+    public Song(Long id, String name, String artist) {
         this.id = id;
         this.artist = artist;
         this.name = name;

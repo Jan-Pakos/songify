@@ -1,6 +1,7 @@
 package com.songify.song.domain.repository;
 
 import com.songify.song.domain.model.Song;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,17 +16,19 @@ public interface SongRepository extends CrudRepository<Song, Long> {
 
     Song save(Song song);
 
-    List<Song> findAll();
+    @Query("SELECT s FROM Song s")
+    List<Song> findAll(Pageable pageable);
 
-        Optional<Song> findById(Long id);
+    @Query("SELECT s FROM Song s WHERE s.id = :id")
+    Optional<Song> findById(Long id);
 
-        void deleteById(Long id);
+    @Modifying
+    @Query("DELETE FROM Song s WHERE s.id = :id")
+    void deleteById(Long id);
 
-        @Modifying
-        @Query("UPDATE Song s SET s.name = :#{#song.name}, s.artist = :#{#song.artist} WHERE s.id = :id")
-        void updateById(@Param("id") Long id, @Param("song") Song song);
-
-
+    @Modifying
+    @Query("UPDATE Song s SET s.name = :#{#song.name}, s.artist = :#{#song.artist} WHERE s.id = :id")
+    void updateById(@Param("id") Long id, @Param("song") Song song);
 
 
 }

@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public interface SongRepository extends CrudRepository<Song, Long> {
+public interface SongRepository extends Repository<Song, Long> {
 
     Song save(Song song);
 

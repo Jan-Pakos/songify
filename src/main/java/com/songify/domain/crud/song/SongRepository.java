@@ -29,4 +29,5 @@ public interface SongRepository extends Repository<Song, Long> {
     void updateById(@Param("id") Long id, @Param("song") Song song);
 
 
+    boolean existsById(Long id);
 }

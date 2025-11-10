@@ -16,16 +16,21 @@ class SongRetriever {
         this.songRepository = songRepository;
     }
 
+
     List<Song> findAll(Pageable pageable) {
-        log.info("retrieving all songs: " + songRepository.findAll(pageable));
+        log.info("retrieving all songs: ");
         return songRepository.findAll(pageable);
     }
 
+    Song findSongDtoById(Long id) {
+        return songRepository.findById(id)
+                .orElseThrow(() -> new SongNotFoundException("Song with id " + id + " not found"));
+    }
 
-    Song findById(Long id) {
-        return songRepository.findById(id).orElseThrow(
-                () -> new SongNotFoundException("Song with id " + id + " not found")
-        );
+    void existsById(Long id) {
+        if (!songRepository.existsById(id)) {
+            throw new SongNotFoundException("Song with id " + id + " not found");
+        }
     }
 
 

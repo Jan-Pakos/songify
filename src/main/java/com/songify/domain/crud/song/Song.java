@@ -53,4 +53,7 @@ class Song extends BaseEntity {
         this.name = name;
     }
 
+    public Song(final String name) {
+        this.name = name;
+    }
 }

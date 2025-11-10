@@ -19,22 +19,15 @@ class SongUpdater {
 
 
      void updateById(Long id, @Valid Song request) {
-        Song songById = songRetriever.findById(id);
+        Song songById = songRetriever.findSongDtoById(id);
         songById.setName(request.getName());
         songById.setArtist(request.getArtist());
         log.info("updated song with id: " + id + " to new values" + request);
     }
 
-    public void someComplexMethod() {
-        songRepository.updateById(1L, new Song("New Name1", "New Artist1"));
-        songRepository.updateById(2L, new Song("New Name2", "New Artist2"));
-        songRepository.updateById(3L, new Song("New Name3", "New Artist3"));
-        Song piesSong = songAdder.addSong(new Song("pies", "pieso"));
-        songRepository.updateById(piesSong.getId(), new Song("pies2", "pieso2"));
-    }
 
     Song updatePartiallyById(Long id, Song songFromRequest) {
-        Song songFromDataBase = songRetriever.findById(id);
+        Song songFromDataBase = songRetriever.findSongDtoById(id);
         if (songFromRequest.getName() != null) {
             songFromDataBase.setName(songFromRequest.getName());
         }

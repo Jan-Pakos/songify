@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourcePerFileMappings">
-    <file url="file://$PROJECT_DIR$/src/main/resources/db.migration/V1__create_song_table.sql" value="eba730cf-74b5-46e6-9d0b-eb235af44d20" />
-    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/eba730cf-74b5-46e6-9d0b-eb235af44d20/console.sql" value="eba730cf-74b5-46e6-9d0b-eb235af44d20" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db.migration/V1__create_song_table.sql" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dce9c800-a7d2-48e6-b1ad-3e41566535af/console.sql" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dce9c800-a7d2-48e6-b1ad-3e41566535af/console_1.sql" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dce9c800-a7d2-48e6-b1ad-3e41566535af/console_2.sql" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dce9c800-a7d2-48e6-b1ad-3e41566535af/console_3.sql" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
+    <file url="file://$APPLICATION_CONFIG_DIR$/consoles/db/dce9c800-a7d2-48e6-b1ad-3e41566535af/console_4.sql" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
   </component>
 </project>

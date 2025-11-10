@@ -5,3 +5,10 @@ CREATE TABLE song (
                       release_date TIMESTAMP,
                       duration BIGINT
 );
+
+ALTER TABLE song
+ADD uuid UUID;
+
+CREATE SEQUENCE IF NOT EXISTS song_id_seq
+    START WITH 1
+    INCREMENT BY 1;

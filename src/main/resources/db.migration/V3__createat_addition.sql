@@ -1,0 +1,9 @@
+ALTER TABLE song
+    ADD created_at TIMESTAMP WITHOUT TIME ZONE;
+--
+-- ALTER TABLE song
+-- DROP
+-- COLUMN id;
+--
+-- ALTER TABLE song
+--     ADD id BIGINT PRIMARY KEY;

@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DatabaseMigrationSettings" lastSelectedDirectory="$PROJECT_DIR$/src/main/java/com/songify/song/domain/model" />
+  <component name="DatabaseMigrationSettings" lastSelectedDirectory="$PROJECT_DIR$/src/main/java/com/songify/domain/crud/artist" />
+  <component name="JpaLiquibaseChangesConfig">
+    <exclude-change idName="album_id_seq" tagName="createSequence" />
+  </component>
 </project>

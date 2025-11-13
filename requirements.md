@@ -16,14 +16,15 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 13. One can assign songs only to albums. 
 14. One can assign artists to albums (an album can have multiple artists, an artist can have multiple albums). 
 15. One can assign only one music genre to a song. 
-16. One can display all songs. 
-17. One can display all genres. 
-18. One can display all artists. 
-19. One can display all albums. 
-20. One can display all albums with artists and songs within the album. 
-21. One can display specific music genres along with their songs. 
-22. One can display specific artists along with their albums. 
-23. We want to have persistent data.
+16. If no genre is assigned to a song, then display "Default"
+17. One can display all songs. 
+18. One can display all genres. 
+19. One can display all artists. 
+20. One can display all albums. 
+21. One can display all albums with artists and songs within the album. 
+22. One can display specific music genres along with their songs. 
+23. One can display specific artists along with their albums. 
+24. We want to have persistent data.
 
 # Non-functional requirements for the Songify Application
 1. The application should be developed using Spring Boot framework.

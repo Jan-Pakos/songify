@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DiffGenerationConfig">
-    <option name="sourceModelValue" value="songify (5):songify (5)" />
-    <option name="targetDbValue" value="dce9c800-a7d2-48e6-b1ad-3e41566535af" />
+    <option name="sourceModelValue" value="songify:songify" />
+    <option name="targetDbValue" value="16f41bf3-366d-44ae-b18b-1f0fbe7b05ee" />
   </component>
 </project>

@@ -10,5 +10,7 @@
     <exclude-change idName="album#uuid" tagName="dropNotNullConstraint" />
     <exclude-change idName="artist#uuid" tagName="dropNotNullConstraint" />
     <exclude-change idName="genre#uuid" tagName="dropNotNullConstraint" />
+    <exclude-change idName="song#album_id" tagName="dropColumn" />
+    <exclude-change idName="song_album_id_fkey" tagName="dropForeignKeyConstraint" />
   </component>
 </project>

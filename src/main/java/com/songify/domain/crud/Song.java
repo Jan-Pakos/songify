@@ -52,9 +52,6 @@ class Song extends BaseEntity {
     @OneToOne
     private Genre genre;
 
-    @ManyToOne
-    private Album album;
-
     @Enumerated(EnumType.STRING)
     private SongLanguage language;
 

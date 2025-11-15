@@ -1,0 +1,9 @@
+ALTER TABLE song
+    ADD language VARCHAR(255);
+
+-- ALTER TABLE song
+-- DROP
+-- COLUMN id;
+--
+-- ALTER TABLE song
+--     ADD id BIGINT NOT NULL PRIMARY KEY;

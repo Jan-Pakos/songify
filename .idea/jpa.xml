@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpaBuddyIdeaProjectConfig" ddlActionDbType="postgres">
+    <option name="newEntityIdStrategy" value="Identity" />
+    <option name="reLastEntityCreationPackage" value="src/main/java/com/songify" />
+    <option name="reverseEngineeringLastDbConnectionId" value="eba730cf-74b5-46e6-9d0b-eb235af44d20" />
+  </component>
+</project>

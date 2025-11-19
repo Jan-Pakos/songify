@@ -1,9 +1,9 @@
 package com.songify.domain.crud;
 
-import com.songify.infrastructure.dto.request.CreateSongRequestDto;
-import com.songify.infrastructure.dto.request.PartiallyUpdateSongRequestDto;
-import com.songify.infrastructure.dto.request.UpdateSongRequestDto;
-import com.songify.infrastructure.dto.response.SongControllerResponseDto;
+import com.songify.infrastructure.crud.song.controller.dto.request.CreateSongRequestDto;
+import com.songify.infrastructure.crud.song.controller.dto.request.PartiallyUpdateSongRequestDto;
+import com.songify.infrastructure.crud.song.controller.dto.request.UpdateSongRequestDto;
+import com.songify.infrastructure.crud.song.controller.dto.response.SongControllerResponseDto;
 
 class SongDomainMapper {
 

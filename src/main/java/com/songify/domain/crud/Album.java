@@ -37,7 +37,7 @@ class Album extends BaseEntity {
 
     private Instant releaseDate;
 
-    @OneToMany(mappedBy = "album")
+    @OneToMany
     @JoinColumn(name = "album_id")
     private Set<Song> songs = new HashSet<>();
 

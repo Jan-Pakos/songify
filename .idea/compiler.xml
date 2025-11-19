@@ -8,10 +8,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="songify (5)" />
+        <module name="songify" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="songify" target="17" />
       <module name="songify (1)" target="17" />
       <module name="songify (10)" target="17" />
       <module name="songify (11)" target="17" />
@@ -28,6 +28,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="songify" options="-parameters" />
       <module name="songify (1)" options="-parameters" />
       <module name="songify (10)" options="-parameters" />
       <module name="songify (11)" options="-parameters" />

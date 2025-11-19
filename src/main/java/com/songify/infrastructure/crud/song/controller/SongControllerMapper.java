@@ -2,10 +2,10 @@ package com.songify.infrastructure.crud.song.controller;
 
 
 import com.songify.domain.crud.dto.SongDto;
-import com.songify.infrastructure.dto.request.CreateSongRequestDto;
-import com.songify.infrastructure.dto.request.PartiallyUpdateSongRequestDto;
-import com.songify.infrastructure.dto.request.UpdateSongRequestDto;
-import com.songify.infrastructure.dto.response.*;
+import com.songify.infrastructure.crud.song.controller.dto.request.CreateSongRequestDto;
+import com.songify.infrastructure.crud.song.controller.dto.request.PartiallyUpdateSongRequestDto;
+import com.songify.infrastructure.crud.song.controller.dto.request.UpdateSongRequestDto;
+import com.songify.infrastructure.crud.song.controller.dto.response.*;
 
 
 import java.util.List;

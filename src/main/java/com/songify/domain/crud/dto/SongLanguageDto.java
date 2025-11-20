@@ -1,6 +1,6 @@
-package com.songify.domain.crud;
+package com.songify.domain.crud.dto;
 
-enum SongLanguage {
+public enum SongLanguageDto {
     ENGLISH,
     SPANISH,
     FRENCH,

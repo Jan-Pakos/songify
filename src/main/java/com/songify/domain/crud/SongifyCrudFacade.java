@@ -31,6 +31,10 @@ public class SongifyCrudFacade {
         return albumAdder.addAlbumWithSong(dto.songId(), dto.title(), dto.releaseDate());
     }
 
+    public SongDto addSong(final SongRequestDto dto) {
+        return songAdder.addSong(dto);
+
+    }
 
     public List<SongDto> findAll(Pageable pageable) {
         return songRetriever.findAll(pageable)
@@ -74,17 +78,7 @@ public class SongifyCrudFacade {
 
     }
 
-    public SongDto addSong(final SongDto songDto) {
-        // some domain validator
-        String name = songDto.name();
-        Song vaidatedAndReadytoSaveSong = new Song(name);
-        // some domain validator ended checking
-        Song addedSong = songAdder.addSong(vaidatedAndReadytoSaveSong);
-        return SongDto.builder()
-                .id(addedSong.getId())
-                .name(addedSong.getName())
-                .build();
-    }
+
 
     public void deleteById(Long id) {
         songRetriever.existsById(id);

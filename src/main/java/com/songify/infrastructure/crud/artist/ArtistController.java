@@ -4,6 +4,8 @@ import com.songify.domain.crud.SongifyCrudFacade;
 import com.songify.domain.crud.dto.ArtistDto;
 import com.songify.domain.crud.dto.ArtistRequestDto;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +13,7 @@ import java.util.Set;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/artist")
+@RequestMapping("/artists")
 public class ArtistController {
 
     private final SongifyCrudFacade songifyCrudFacade;
@@ -23,8 +25,8 @@ public class ArtistController {
     }
 
     @GetMapping
-    ResponseEntity<AllArtistsDto> postArtist() {
-        Set<ArtistDto> setOfAllArtists = songifyCrudFacade.findAllArtists();
+    ResponseEntity<AllArtistsDto> findAllArtists(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+        Set<ArtistDto> setOfAllArtists = songifyCrudFacade.findAllArtists(pageable);
         AllArtistsDto allArtistsDto = new AllArtistsDto(setOfAllArtists);
         return ResponseEntity.ok(allArtistsDto);
     }

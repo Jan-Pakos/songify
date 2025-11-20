@@ -38,8 +38,8 @@ public class SongifyCrudFacade {
 
     }
 
-    public Set<ArtistDto> findAllArtists() {
-        return artistRetriever.findAllArtists();
+    public Set<ArtistDto> findAllArtists(Pageable pageable) {
+        return artistRetriever.findAllArtists(pageable);
     }
 
     public List<SongDto> findAllSongs(Pageable pageable) {

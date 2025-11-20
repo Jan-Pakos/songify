@@ -3,6 +3,7 @@ package com.songify.domain.crud;
 import com.songify.domain.crud.dto.ArtistDto;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -22,8 +23,8 @@ class ArtistRetriever {
         return artistRepository.save(artist);
     }
 
-    Set<ArtistDto> findAllArtists() {
-        return artistRepository.findAll()
+    Set<ArtistDto> findAllArtists(Pageable pageable) {
+        return artistRepository.findAll(pageable)
                 .stream()
                 .map(artist -> new ArtistDto(
                         artist.getName(),

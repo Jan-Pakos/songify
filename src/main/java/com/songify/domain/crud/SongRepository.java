@@ -14,7 +14,7 @@ public interface SongRepository extends Repository<Song, Long> {
 
     Song save(Song song);
 
-    @Query("SELECT s FROM Song s")
+
     List<Song> findAll(Pageable pageable);
 
     @Query("SELECT s FROM Song s WHERE s.id = :id")

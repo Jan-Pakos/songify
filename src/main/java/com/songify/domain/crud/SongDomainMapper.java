@@ -8,18 +8,18 @@ import com.songify.infrastructure.crud.song.controller.dto.response.SongControll
 class SongDomainMapper {
 
     public static SongControllerResponseDto mapFromSongToSongDto(Song song) {
-        return new SongControllerResponseDto(song.getId(), song.getName(), song.getArtist());
+        return new SongControllerResponseDto(song.getId(), song.getName());
     }
 
     public static Song mapFromCreateSongRequestDtoToSong(CreateSongRequestDto dto) {
-        return new Song(dto.name(), dto.artist());
+        return new Song(dto.name());
     }
 
     public static Song mapFromUpdateSongRequestDtoToSong(UpdateSongRequestDto dto) {
-        return new Song(dto.name(), dto.artist());
+        return new Song(dto.name());
     }
 
     public static Song mapFromPartiallyUpdateSongRequestDtoToSong(PartiallyUpdateSongRequestDto dto) {
-        return new Song(dto.name(), dto.artist());
+        return new Song(dto.name());
     }
 }

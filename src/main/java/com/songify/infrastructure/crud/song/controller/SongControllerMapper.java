@@ -48,7 +48,7 @@ public class SongControllerMapper {
     }
 
     static UpdateSongResponseDto mapFromSongToUpdateSongResponseDto(SongDto newSong) {
-        return new UpdateSongResponseDto(newSong.name(), "testt");
+        return new UpdateSongResponseDto(newSong.name(), "test");
     }
 
     static PartiallyUpdateSongResponseDto mapFromSongDtoToPartiallyUpdateSongResponseDto(SongDto songDto) {

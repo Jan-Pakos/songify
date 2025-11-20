@@ -45,4 +45,7 @@ class Album extends BaseEntity {
     private Set<Artist> artists = new HashSet<>();
 
 
+    void addSong(final Song song) {
+        songs.add(song);
+    }
 }

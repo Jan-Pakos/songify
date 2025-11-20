@@ -17,6 +17,7 @@ public class SongifyCrudFacade {
     private final SongAdder songAdder;
     private final ArtistAdder artistAdder;
     private final GenreAdder genreAdder;
+    private final AlbumAdder albumAdder;
 
     public ArtistDto addArtist(ArtistRequestDto dto) {
         return artistAdder.addArtist(dto.name());
@@ -25,6 +26,11 @@ public class SongifyCrudFacade {
     public GenreDto addGenre(GenreRequestDto dto) {
         return genreAdder.addGenre(dto.name());
     }
+
+    public AlbumDto addAlbumWithSong(AlbumRequestDto dto) {
+        return albumAdder.addAlbumWithSong(dto.songId(), dto.title(), dto.releaseDate());
+    }
+
 
     public List<SongDto> findAll(Pageable pageable) {
         return songRetriever.findAll(pageable)

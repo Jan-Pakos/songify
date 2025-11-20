@@ -1,0 +1,37 @@
+package com.songify.domain.crud.dto;
+
+import java.time.Instant;
+import java.util.Set;
+
+
+public interface AlbumInfo {
+    Long getId();
+
+    String getTitle();
+
+    Instant getReleaseDate();
+
+    Set<SongInfo> getSongs();
+
+    Set<ArtistInfo> getArtists();
+
+    interface SongInfo {
+        Long getId();
+
+        String getName();
+
+        Long getDuration();
+
+        GenreInfo getGenre();
+
+        interface GenreInfo {
+            String getName();
+        }
+    }
+
+    interface ArtistInfo {
+        Long getId();
+
+        String getName();
+    }
+}

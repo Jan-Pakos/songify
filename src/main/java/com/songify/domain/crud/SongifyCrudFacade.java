@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -18,6 +19,7 @@ public class SongifyCrudFacade {
     private final ArtistAdder artistAdder;
     private final GenreAdder genreAdder;
     private final AlbumAdder albumAdder;
+    private final ArtistRetriever artistRetriever;
 
     public ArtistDto addArtist(ArtistRequestDto dto) {
         return artistAdder.addArtist(dto.name());
@@ -36,18 +38,21 @@ public class SongifyCrudFacade {
 
     }
 
-    public List<SongDto> findAll(Pageable pageable) {
+    public Set<ArtistDto> findAllArtists() {
+        return artistRetriever.findAllArtists();
+    }
+
+    public List<SongDto> findAllSongs(Pageable pageable) {
         return songRetriever.findAll(pageable)
                 .stream()
                 .map(song -> SongDto.builder()
                         .id(song.getId())
                         .name(song.getName())
-                        .name(song.getName())
                         .build())
                 .toList();
     }
 
-    public void updateById(Long id, SongDto newSongDto) {
+    public void updateSongById(Long id, SongDto newSongDto) {
         songRetriever.existsById(id);
         // some domain validator
         Song songValidatedAndReadyToUpdate = new Song(newSongDto.name());
@@ -55,21 +60,11 @@ public class SongifyCrudFacade {
         songUpdater.updateById(id, songValidatedAndReadyToUpdate);
     }
 
-    public SongDto updatePartiallyById(Long id, SongDto songFromRequest) {
+    public SongDto partiallyUpdateSongById(Long id, SongDto songFromRequest) {
         songRetriever.existsById(id);
         Song songFromDatabase = songRetriever.findSongDtoById(id);
         Song toSave = new Song();
-        if (songFromRequest.name() != null) {
-            toSave.setName(songFromRequest.name());
-        } else {
-            toSave.setName(songFromDatabase.getName());
-        }
-//        todo
-//        if (songFromRequest.getArtist() != null) {
-//            builder.artist(songFromRequest.getArtist());
-//        } else {
-//            builder.artist(songFromDatabase.getArtist());
-//        }
+
         songUpdater.updateById(id, toSave);
         return SongDto.builder()
                 .id(toSave.getId())
@@ -78,9 +73,7 @@ public class SongifyCrudFacade {
 
     }
 
-
-
-    public void deleteById(Long id) {
+    public void deleteSongById(Long id) {
         songRetriever.existsById(id);
         songDeleter.deleteById(id);
     }

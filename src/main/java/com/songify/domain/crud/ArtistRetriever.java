@@ -1,0 +1,33 @@
+package com.songify.domain.crud;
+
+import com.songify.domain.crud.dto.ArtistDto;
+import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+
+
+@Service
+@AllArgsConstructor
+
+
+
+class ArtistRetriever {
+
+    private final ArtistRepository artistRepository;
+
+    Artist save(Artist artist) {
+        return artistRepository.save(artist);
+    }
+
+    Set<ArtistDto> findAllArtists() {
+        return artistRepository.findAll()
+                .stream()
+                .map(artist -> new ArtistDto(
+                        artist.getName(),
+                        artist.getId()))
+                .collect(Collectors.toSet());
+    }
+}

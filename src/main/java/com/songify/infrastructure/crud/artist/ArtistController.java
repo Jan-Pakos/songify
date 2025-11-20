@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Set;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/artist")
@@ -18,5 +20,12 @@ public class ArtistController {
     ResponseEntity<ArtistDto> postArtist(@RequestBody ArtistRequestDto artistRequestDto) {
         ArtistDto artistDto = songifyCrudFacade.addArtist(artistRequestDto);
         return ResponseEntity.ok(artistDto);
+    }
+
+    @GetMapping
+    ResponseEntity<AllArtistsDto> postArtist() {
+        Set<ArtistDto> setOfAllArtists = songifyCrudFacade.findAllArtists();
+        AllArtistsDto allArtistsDto = new AllArtistsDto(setOfAllArtists);
+        return ResponseEntity.ok(allArtistsDto);
     }
 }

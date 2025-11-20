@@ -3,7 +3,7 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 # Functional requirements for the Songify Application
 1. ~~One can add an artist (artist's name).~~ (DONE)
 2. ~~One can add a music genre (genre name).~~ (DONE)
-3. One can add an album (title, release date, but it must contain at least one song).
+~~3. One can add an album (title, release date, but it must contain at least one song).~~ (DONE)
 4. One can add a song (title, duration, release date, and the artist it belongs to). 
 5. One can delete an artist (this also deletes their songs and albums). 
 6. One can delete a music genre (but there must not be any song currently assigned to that genre). 

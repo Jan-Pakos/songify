@@ -43,8 +43,8 @@ public class SongControllerMapper {
         return new CreateSongResponseDto(songDto);
     }
 
-    static DeleteSongResponseDto mapFromSongToDeleteSongResponseDto(Long id) {
-        return new DeleteSongResponseDto("You deleted song with id: " + id, HttpStatus.OK);
+    static DeleteSongResponseDto mapFromSongToDeleteSongResponseDto(Long id, String name) {
+        return new DeleteSongResponseDto("You deleted song with id: " + id + " and name: " + name , HttpStatus.OK);
     }
 
     static UpdateSongResponseDto mapFromSongToUpdateSongResponseDto(SongDto newSong) {

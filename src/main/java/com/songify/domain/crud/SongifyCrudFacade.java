@@ -1,6 +1,7 @@
 package com.songify.domain.crud;
 
 import com.songify.domain.crud.dto.*;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import java.util.Set;
 
 @Service
 @AllArgsConstructor
+@Transactional
 public class SongifyCrudFacade {
 
     private final SongRetriever songRetriever;
@@ -21,6 +23,7 @@ public class SongifyCrudFacade {
     private final AlbumAdder albumAdder;
     private final ArtistRetriever artistRetriever;
     private final AlbumRetriever albumRetriever;
+    private final ArtistDeleter artistDeleter;
 
     public ArtistDto addArtist(ArtistRequestDto dto) {
         return artistAdder.addArtist(dto.name());
@@ -78,9 +81,13 @@ public class SongifyCrudFacade {
 
     }
 
-    public void deleteSongById(Long id) {
-        songRetriever.existsById(id);
-        songDeleter.deleteById(id);
+    public SongDto deleteSongById(Long id) {
+        return songDeleter.deleteById(id);
+
+    }
+
+    public void deleteArtistByIdWithAlbumsAndSongs(Long artistId) {
+        artistDeleter.deleteArtistByIdWithAlbumsAndSongs(artistId);
     }
 
     public SongDto findSongDtoById(Long id) {

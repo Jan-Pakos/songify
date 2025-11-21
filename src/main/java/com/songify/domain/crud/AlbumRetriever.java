@@ -19,17 +19,9 @@ class AlbumRetriever {
         return albumRepository.findAlbumByIdWithSongsAndArtists(id).orElseThrow(
                 () -> new AlbumNotFoundException("Album with id " + id + " not found")
         );
-//        Set<Artist> artists = album.getArtists();
-//        Set<Song> songs = album.getSongs();
-//
-//        AlbumDto albumDto = new AlbumDto(album.getTitle(), album.getId());
-//
-//        Set<ArtistDto> artistDto = artists.stream().map(artist ->
-//                new ArtistDto(artist.getName(), artist.getId())).collect(Collectors.toSet());
-//
-//        Set<SongDto> songsDto = songs.stream().map(song ->
-//                new SongDto(song.getId(), song.getName())).collect(Collectors.toSet());
-//
-//        return new AlbumDtoWithArtistsAndSongs(albumDto, artistDto, songsDto);
+    }
+
+    Set<Album> findAlbumsByArtistId(final Long id) {
+        return albumRepository.findAllAlbumsByArtistId(id);
     }
 }

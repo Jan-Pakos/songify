@@ -64,8 +64,8 @@ public class SongRestController {
 
     @DeleteMapping("/{id}")
     ResponseEntity<DeleteSongResponseDto> deleteSongByIdUsingPathVariable(@PathVariable Long id) {
-        songFacade.deleteSongById(id);
-        DeleteSongResponseDto body = mapFromSongToDeleteSongResponseDto(id);
+        SongDto songDto = songFacade.deleteSongById(id);
+        DeleteSongResponseDto body = mapFromSongToDeleteSongResponseDto(id, songDto.name());
         return ResponseEntity.ok(body);
     }
 

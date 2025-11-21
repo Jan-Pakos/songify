@@ -1,17 +1,16 @@
 package com.songify.domain.crud;
 
 enum SongLanguage {
-    ENGLISH,
-    SPANISH,
-    FRENCH,
-    GERMAN,
-    ITALIAN,
-    PORTUGUESE,
-    HINDI,
-    CHINESE,
-    JAPANESE,
-    KOREAN,
-    POLISH,
-    RUSSIAN,
-    SWEDISH
+    English,
+    Spanish,
+    French,
+    German,
+    Italian,
+    Chinese,
+    Japanese,
+    Hindi,
+    Portuguese,
+    Russian,
+    Instrumental,
+    Polish
 }

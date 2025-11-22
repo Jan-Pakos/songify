@@ -4,24 +4,24 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 1. ~~One can add an artist (artist's name).~~ (DONE)
 2. ~~One can add a music genre (genre name).~~ (DONE)
 ~~3. One can add an album (title, release date, but it must contain at least one song).~~ (DONE)
-4. One can add a song (title, duration, release date, and the artist it belongs to). 
-5. One can delete an artist (this also deletes their songs and albums). 
+~~4. One can add a song (title, duration, release date, and the artist it belongs to).~~ (DONE)
+~~5. One can delete an artist (this also deletes their songs and albums).~~ (DONE)
 6. One can delete a music genre (but there must not be any song currently assigned to that genre). 
 7. One can delete an album (but only when there are no songs assigned to the album). 
-8. One can delete a song. 
-9. One can edit an artist's songs and their name. 
+~~8. One can delete a song, but the album and artist is not deleted if the album only had that song.~~
+9. One can edit an artist's their name. 
 10. One can edit a music genre's name. 
 11. One can edit an album (add songs, add artists, change the album name). 
 12. One can edit a song (duration, artist, song name). 
-13. One can assign songs only to albums. 
-14. One can assign artists to albums (an album can have multiple artists, an artist can have multiple albums). 
+13. One can assign songs to artists, through albums
+~~14. One can assign artists to albums (an album can have multiple artists, an artist can have multiple albums).~~ 
 15. One can assign only one music genre to a song. 
 16. If no genre is assigned to a song, then display "Default"
-17. One can display all songs. 
+~~17. One can display all songs.~~ 
 18. One can display all genres. 
-19. One can display all artists. 
+~~19. One can display all artists.~~ 
 20. One can display all albums. 
-21. One can display specific albums with artists and songs within the album. 
+~~21. One can display specific albums with artists and songs within the album.~~ 
 22. One can display specific music genres along with their songs. 
 23. One can display specific artists along with their albums. 
 24. We want to have persistent data.

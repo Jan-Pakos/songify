@@ -53,5 +53,11 @@ public class ArtistController {
         return ResponseEntity.ok("Artist name updated successfully.");
     }
 
+    @PostMapping("/withDefaultAlbumAndSong")
+    ResponseEntity<String> deleteArtistById(@PathVariable Long artistId, @Valid @RequestBody ArtistUpdateRequestDto artistUpdateRequestDto) {
+        songifyCrudFacade.updateArtistNameById(artistId, artistUpdateRequestDto.newName());
+        return ResponseEntity.ok("Artist name updated successfully.");
+    }
+
 
 }

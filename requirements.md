@@ -25,6 +25,7 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 22. One can display specific music genres along with their songs. 
 23. One can display specific artists along with their albums. 
 24. We want to have persistent data.
+25. An artist can be added together with an album and a song in one request.
 
 # Non-functional requirements for the Songify Application
 1. The application should be developed using Spring Boot framework.

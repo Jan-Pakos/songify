@@ -18,15 +18,19 @@ class ArtistAdder {
 
 
     ArtistDto addArtist(String name) {
-        Artist artist = new Artist(name);
-        Artist artist1 = artistRepository.save(artist);
-        return new ArtistDto(artist1.getName(), artist1.getId());
+        Artist save = saveArtist(name);
+        return new ArtistDto(save.getName(), save.getId());
     }
 
     ArtistDto addArtistWithDefaultAlbumAndSong(ArtistRequestDto dto) {
         String artistName = dto.name();
         Artist save = saveWithDefaultAlbumAndSong(artistName);
         return new ArtistDto(save.getName(), save.getId());
+    }
+
+    private Artist saveArtist(final String name) {
+        Artist artist = new Artist(name);
+        return artistRepository.save(artist);
     }
 
     private Artist saveWithDefaultAlbumAndSong(String artistName) {

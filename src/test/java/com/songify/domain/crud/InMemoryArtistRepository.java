@@ -1,4 +1,41 @@
 package com.songify.domain.crud;
 
-public class InMemoryArtistRepository {
+import com.songify.domain.crud.dto.ArtistDto;
+import org.springframework.data.domain.Pageable;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
+class InMemoryArtistRepository implements ArtistRepository {
+
+    Map<Long, Artist> db = new HashMap<>();
+    AtomicInteger index = new AtomicInteger(0);
+
+    @Override
+    public Artist save(Artist artist) {
+        long index = this.index.getAndIncrement();
+            db.put(index, artist);
+        artist.setId(index);
+        return artist;
+    }
+
+    @Override
+    public Set<Artist> findAll(Pageable pageable) {
+        return new HashSet<>(db.values());
+    }
+
+    @Override
+    public Optional<Artist> findById(Long id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void deleteById(Long id) {
+
+    }
+
+    @Override
+    public void updateArtistNameById(Long id, String newName) {
+
+    }
 }

@@ -6,3 +6,7 @@
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+
+
+# Compiled code and packaged application output (Maven)
+/target/

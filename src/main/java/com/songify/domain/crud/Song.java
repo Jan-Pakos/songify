@@ -16,6 +16,12 @@ import java.time.Instant;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(
+        indexes = @Index(
+                name = "idx_song_name",
+                columnList = "name"
+        )
+)
 class Song extends BaseEntity {
 
     @Id
@@ -30,10 +36,6 @@ class Song extends BaseEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-//    @Column(name = "artist", nullable = false)
-//    private String artist;
-
-
     private Instant releaseDate;
 
     private Long duration;
@@ -43,7 +45,6 @@ class Song extends BaseEntity {
 
     @Enumerated(EnumType.STRING)
     private SongLanguage language;
-
 
     public Song(final String name) {
         this.name = name;

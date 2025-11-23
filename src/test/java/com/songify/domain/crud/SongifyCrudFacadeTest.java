@@ -2,8 +2,9 @@ package com.songify.domain.crud;
 
 import com.songify.domain.crud.dto.ArtistDto;
 import com.songify.domain.crud.dto.ArtistRequestDto;
-import jakarta.persistence.Table;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Pageable;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,25 +18,29 @@ class SongifyCrudFacadeTest {
     );
 
     @Test
-    public void addArtistTest() {
-        ArtistRequestDto justingBieber = ArtistRequestDto.builder().name("Justin Bieber").build();
+    public void should_add_return_justin_bieber_when_() {
+        // given
+        ArtistRequestDto justingBieber = ArtistRequestDto.builder().name("Pitbull").build();
+        Set<ArtistDto> allArtists = songifyCrudFacade.findAllArtists(Pageable.unpaged());
+        assertThat(allArtists).isEmpty();
+        // when
         ArtistDto artistDto = songifyCrudFacade.addArtist(justingBieber);
-        assertThat(artistDto).isNotNull();
+        // then
+        assertThat(artistDto.name()).isEqualTo("Pitbull");
         assertThat(artistDto.id()).isEqualTo(0L);
-        assertThat(artistDto.name()).isEqualTo("Justin Bieber");
-
     }
 
     @Test
-    public void findAllArtistsTest() {
-        ArtistRequestDto justingBieber = ArtistRequestDto.builder().name("Justin Bieber").build();
+    public void should_return_set_of_size_2_when_pitbull_and_eminem_are_added() {
+        // given
+        ArtistRequestDto justingBieber = ArtistRequestDto.builder().name("Pitbull").build();
         songifyCrudFacade.addArtist(justingBieber);
-        ArtistRequestDto taylorSwift = ArtistRequestDto.builder().name("Taylor Swift").build();
+        ArtistRequestDto taylorSwift = ArtistRequestDto.builder().name("Eminem").build();
         songifyCrudFacade.addArtist(taylorSwift);
-
-        var allArtists = songifyCrudFacade.findAllArtists(org.springframework.data.domain.Pageable.unpaged());
+        // when
+        Set<ArtistDto> allArtists = songifyCrudFacade.findAllArtists(Pageable.unpaged());
+        // then
         assertEquals(2, allArtists.size());
-        assertNotNull(allArtists);
     }
 
 

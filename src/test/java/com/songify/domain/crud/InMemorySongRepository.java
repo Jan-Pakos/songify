@@ -1,12 +1,11 @@
 package com.songify.domain.crud;
 
 import org.springframework.data.domain.Pageable;
-
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-public class InMemorySongRepository implements SongRepository {
+class InMemorySongRepository implements SongRepository {
     @Override
     public Song save(Song song) {
         return null;

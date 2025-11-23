@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-public class InMemoryAlbumRepository implements AlbumRepository {
+class InMemoryAlbumRepository implements AlbumRepository {
     @Override
     public Album save(Album album) {
         return null;

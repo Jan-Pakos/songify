@@ -2,6 +2,7 @@ package com.songify.domain.crud;
 
 import com.songify.domain.crud.dto.ArtistDto;
 import com.songify.domain.crud.dto.ArtistRequestDto;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Pageable;
 import java.util.Set;
@@ -18,19 +19,21 @@ class SongifyCrudFacadeTest {
     );
 
     @Test
-    public void should_add_return_justin_bieber_when_() {
+    @DisplayName("Should add artist 'pitbull' with id:0 When pitbull is sent")
+    public void should_add_artist_pitbull_with_id_zero_when_pitbull_is_sent() {
         // given
-        ArtistRequestDto justingBieber = ArtistRequestDto.builder().name("Pitbull").build();
+        ArtistRequestDto pitbullArtist = ArtistRequestDto.builder().name("pitbull").build();
         Set<ArtistDto> allArtists = songifyCrudFacade.findAllArtists(Pageable.unpaged());
         assertThat(allArtists).isEmpty();
         // when
-        ArtistDto artistDto = songifyCrudFacade.addArtist(justingBieber);
+        ArtistDto artistDto = songifyCrudFacade.addArtist(pitbullArtist);
         // then
-        assertThat(artistDto.name()).isEqualTo("Pitbull");
+        assertThat(artistDto.name()).isEqualTo("pitbull");
         assertThat(artistDto.id()).isEqualTo(0L);
     }
 
     @Test
+    @DisplayName("Should return Set of size:2 When 'pitbull' and 'eminem' are added")
     public void should_return_set_of_size_2_when_pitbull_and_eminem_are_added() {
         // given
         ArtistRequestDto justingBieber = ArtistRequestDto.builder().name("Pitbull").build();

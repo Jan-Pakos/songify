@@ -112,4 +112,13 @@ public class SongifyCrudFacade {
                 .name(song.getName())
                 .build();
     }
+
+    public Set<AlbumDto> findAllArtistAlbumsById(Long artistId) {
+        return albumRetriever.findAlbumsDtoByArtistId(artistId);
+    }
+
+    int countArtistByAlbumId(Long albumId) {
+        return albumRetriever.countArtistsByAlbumId(albumId);
+    }
+
 }

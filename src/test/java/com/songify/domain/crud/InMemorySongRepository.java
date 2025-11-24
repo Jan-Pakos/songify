@@ -1,29 +1,39 @@
 package com.songify.domain.crud;
 
 import org.springframework.data.domain.Pageable;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+
+import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 class InMemorySongRepository implements SongRepository {
+
+
+    Map<Long, Song> db = new HashMap<>();
+    AtomicInteger index = new AtomicInteger(0);
+
     @Override
     public Song save(Song song) {
-        return null;
+        long index = this.index.getAndIncrement();
+        db.put(index, song);
+        song.setId(index);
+        song.setGenre(new Genre("Default Genre"));
+        return song;
     }
 
     @Override
     public List<Song> findAll(Pageable pageable) {
-        return List.of();
+        return new ArrayList<>(db.values());
     }
 
     @Override
     public Optional<Song> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(db.get(id));
     }
 
     @Override
     public void deleteById(Long id) {
-
+        db.remove(id);
     }
 
     @Override

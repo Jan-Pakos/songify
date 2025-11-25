@@ -48,6 +48,6 @@ class InMemorySongRepository implements SongRepository {
 
     @Override
     public void deleteByIdIn(Collection<Long> ids) {
-
+        ids.forEach(id -> db.remove(id));
     }
 }

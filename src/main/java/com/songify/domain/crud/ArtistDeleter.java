@@ -19,32 +19,37 @@ class ArtistDeleter {
     private final SongDeleter songDeleter;
     private final AlbumDeleter albumDeleter;
 
-
     public void deleteArtistByIdWithAlbumsAndSongs(Long artistId) {
         Artist artist = artistRetriever.findById(artistId);
-        Set<Album> albumsByArtistId = albumRetriever.findAlbumsByArtistId(artist.getId());
-        if (albumsByArtistId.isEmpty()) {
-            log.info("Artist with id {} has no albums. Deleting artist only.", artistId);
+        Set<Album> artistAlbums = albumRetriever.findAlbumsByArtistId(artist.getId());
+        if (artistAlbums.isEmpty()) {
+            log.info("Artist with id: " + artistId + " have 0 albums");
             artistRepository.deleteById(artistId);
+            return;
         }
 
-        albumsByArtistId.stream()
-                .filter(album -> album.getArtists().size() > 1)
-                .forEach(album -> album.removeArtist(artist));
-
-        Set<Album> albumsWithOneArtist = albumsByArtistId.stream()
+        Set<Album> albumsWithOnlyOneArtist = artistAlbums.stream()
                 .filter(album -> album.getArtists().size() == 1)
                 .collect(Collectors.toSet());
 
-        Set<Long> allSongsFromAlbumsWithOnlyThisArtist =  albumsWithOneArtist
+        Set<Long> allSongsIdsFromAllAlbumsWhereWasOnlyThisArtist = albumsWithOnlyOneArtist
                 .stream()
                 .flatMap(album -> album.getSongs().stream())
                 .map(Song::getId)
                 .collect(Collectors.toSet());
 
-        songDeleter.deleteAllSongsById(allSongsFromAlbumsWithOnlyThisArtist);
-        Set<Long> albumIdsToDelete = albumsWithOneArtist.stream().map(Album::getId).collect(Collectors.toSet());
+        songDeleter.deleteAllSongsById(allSongsIdsFromAllAlbumsWhereWasOnlyThisArtist);
+
+        Set<Long> albumIdsToDelete = albumsWithOnlyOneArtist.stream()
+                .map(Album::getId)
+                .collect(Collectors.toSet());
+
         albumDeleter.deleteAllAlbumsByIds(albumIdsToDelete);
+
+        artistAlbums.stream()
+                .filter(album -> album.getArtists().size() >= 2)
+                .forEach(album -> album.removeArtist(artist));
+
         artistRepository.deleteById(artistId);
 
     }

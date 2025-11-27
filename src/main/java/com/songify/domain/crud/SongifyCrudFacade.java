@@ -118,7 +118,7 @@ public class SongifyCrudFacade {
         return albumRetriever.findAlbumsDtoByArtistId(artistId);
     }
 
-    int countArtistByAlbumId(Long albumId) {
+    public int countArtistByAlbumId(Long albumId) {
         return albumRetriever.countArtistsByAlbumId(albumId);
     }
 

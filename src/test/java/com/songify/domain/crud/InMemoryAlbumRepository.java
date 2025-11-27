@@ -13,10 +13,6 @@ class InMemoryAlbumRepository implements AlbumRepository {
     Map<Long, Album> db = new HashMap<>();
     AtomicInteger index = new AtomicInteger(0);
 
-    @Override
-    public int count_ArtistsByAlbumId(Long albumId) {
-        return db.get(albumId).getArtists().size();
-    }
 
     @Override
     public Album save(Album album) {

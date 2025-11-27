@@ -34,7 +34,7 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 
 # HAPPY PATH (user creates an Eminem album with songs "Lose Yourself" and "Stan" with genre "Hip Hop")
 given there are no songs, artists, albums, or genres in the system
-1. User sends a GET request to /songs and receives an empty list.
+1. When I send a GET request to /songs and sees nothing.
 2. User sends a POST request to /songs with body { "title": "Lose Yourself", "duration": 326 } to create the song "Lose Yourself" the song is returned with id 1 and HTTP status 201.
 3. User sends a POST request to /songs with body { "title": "Stan", "duration": 356 } to create the song "Lose Yourself" the song is returned with id 2 and HTTP status 201.
 4. User sends a GET request to /artists and receives an empty list.

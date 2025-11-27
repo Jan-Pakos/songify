@@ -15,8 +15,6 @@ import java.util.Set;
 
 interface AlbumRepository extends Repository<Album, Long> {
 
-    int count_ArtistsByAlbumId(Long albumId);
-
     Album save(Album album);
 
     Optional<Album> findById(Long id);

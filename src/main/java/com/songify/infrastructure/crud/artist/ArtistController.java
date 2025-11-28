@@ -6,8 +6,6 @@ import com.songify.domain.crud.dto.ArtistRequestDto;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,7 +27,7 @@ public class ArtistController {
     }
 
     @GetMapping
-    ResponseEntity<AllArtistsDto> findAllArtists(@PageableDefault(page = 0, size = 10) Pageable pageable) {
+    ResponseEntity<AllArtistsDto> findAllArtists(Pageable pageable) {
         Set<ArtistDto> setOfAllArtists = songifyCrudFacade.findAllArtists(pageable);
         AllArtistsDto allArtistsDto = new AllArtistsDto(setOfAllArtists);
         return ResponseEntity.ok(allArtistsDto);
@@ -48,16 +46,10 @@ public class ArtistController {
     }
 
     @PatchMapping("/{artistId}")
-    ResponseEntity<String> deleteArtistById(@PathVariable Long artistId, @Valid @RequestBody ArtistUpdateRequestDto artistUpdateRequestDto) {
-        songifyCrudFacade.updateArtistNameById(artistId, artistUpdateRequestDto.newName());
-        return ResponseEntity.ok("Artist name updated successfully.");
+    ResponseEntity<ArtistDto> deleteArtistById(@PathVariable Long artistId, @Valid @RequestBody ArtistUpdateRequestDto artistUpdateRequestDto) {
+        ArtistDto artistDto = songifyCrudFacade.updateArtistNameById(artistId, artistUpdateRequestDto.newName());
+        return ResponseEntity.ok(artistDto);
     }
-
-//    @PostMapping("/withDefaultAlbumAndSong")
-//    ResponseEntity<String> deleteArtistById(@PathVariable Long artistId, @Valid @RequestBody ArtistUpdateRequestDto artistUpdateRequestDto) {
-//        songifyCrudFacade.updateArtistNameById(artistId, artistUpdateRequestDto.newName());
-//        return ResponseEntity.ok("Artist name updated successfully.");
-//    }
 
 
 }

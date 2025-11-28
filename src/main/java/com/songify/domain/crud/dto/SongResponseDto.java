@@ -3,8 +3,9 @@ package com.songify.domain.crud.dto;
 import lombok.Builder;
 
 @Builder
-public record SongDto(
+public record SongResponseDto(
         Long id,
         String name,
-        Long genreId) {
+        String genreName
+) {
 }

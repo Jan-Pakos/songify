@@ -10,6 +10,7 @@ public record SongRequestDto(
         String title,
         Instant releaseDate,
         Long durationInSeconds,
-        SongLanguageDto language
+        SongLanguageDto language,
+        Long genreId
 ) {
 }

@@ -1,9 +1,7 @@
 package com.songify.infrastructure.crud.song.controller;
 
-
-import com.songify.domain.crud.dto.SongDto;
+import com.songify.domain.crud.dto.SongResponseDto;
 import com.songify.infrastructure.crud.song.controller.dto.request.CreateSongRequestDto;
-import com.songify.infrastructure.crud.song.controller.dto.request.PartiallyUpdateSongRequestDto;
 import com.songify.infrastructure.crud.song.controller.dto.request.UpdateSongRequestDto;
 import com.songify.infrastructure.crud.song.controller.dto.response.*;
 
@@ -18,29 +16,14 @@ import org.springframework.http.HttpStatus;
 public class SongControllerMapper {
 
 
-    static SongDto mapFromCreateSongRequestDtoToSongDto(CreateSongRequestDto dto) {
-        return SongDto
+    static SongResponseDto mapFromUpdateSongRequestDtoToSongDto(UpdateSongRequestDto dto) {
+        return SongResponseDto
                 .builder()
                 .name(dto.name())
                 .build();
     }
 
-    static SongDto mapFromUpdateSongRequestDtoToSongDto(UpdateSongRequestDto dto) {
-        return SongDto
-                .builder()
-                .name(dto.name())
-                .build();
-    }
-
-    static SongDto mapFromPartiallyUpdateSongRequestDtoToSong(PartiallyUpdateSongRequestDto dto) {
-        return SongDto
-                .builder()
-                .name(dto.name())
-                .genreId(dto.genreId())
-                .build();
-    }
-
-    static CreateSongResponseDto mapFromSongToCreateSongResponseDto(SongDto songDto) {
+    static CreateSongResponseDto mapFromSongToCreateSongResponseDto(SongResponseDto songDto) {
         return new CreateSongResponseDto(songDto);
     }
 
@@ -48,19 +31,19 @@ public class SongControllerMapper {
         return new DeleteSongResponseDto("You deleted song with id: " + id + " and name: " + name , HttpStatus.OK);
     }
 
-    static UpdateSongResponseDto mapFromSongToUpdateSongResponseDto(SongDto newSong) {
+    static UpdateSongResponseDto mapFromSongToUpdateSongResponseDto(SongResponseDto newSong) {
         return new UpdateSongResponseDto(newSong.name(), "test");
     }
 
-    static PartiallyUpdateSongResponseDto mapFromSongDtoToPartiallyUpdateSongResponseDto(SongDto songDto) {
+    static PartiallyUpdateSongResponseDto mapFromSongDtoToPartiallyUpdateSongResponseDto(SongResponseDto songDto) {
         return new PartiallyUpdateSongResponseDto(songDto);
     }
 
-    static GetSongResponseDto mapFromSongToGetSongResponseDto(SongDto songDto) {
+    static GetSongResponseDto mapFromSongToGetSongResponseDto(SongResponseDto songDto) {
         return new GetSongResponseDto(songDto);
     }
 
-    static GetAllSongsResponseDto mapFromSongToGetAllSongsResponseDto(List<SongDto> songs) {
+    static GetAllSongsResponseDto mapFromSongToGetAllSongsResponseDto(List<SongResponseDto> songs) {
         return new GetAllSongsResponseDto(songs);
     }
 }

@@ -1,7 +1,7 @@
 package com.songify.infrastructure.crud.song.controller.dto.response;
 
 
-import com.songify.domain.crud.dto.SongDto;
+import com.songify.domain.crud.dto.SongResponseDto;
 
-public record CreateSongResponseDto(SongDto song) {
+public record CreateSongResponseDto(SongResponseDto song) {
 }

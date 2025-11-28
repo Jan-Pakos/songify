@@ -1,24 +1,24 @@
 package com.songify.domain.crud;
 
-import com.songify.domain.crud.dto.SongDto;
+import com.songify.domain.crud.dto.SongResponseDto;
 import com.songify.domain.crud.dto.SongLanguageDto;
 import com.songify.domain.crud.dto.SongRequestDto;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 @Log4j2
 @Service
 @Transactional
+@AllArgsConstructor
 class SongAdder {
 
     private final SongRepository songRepository;
+    private final GenreAssigner genreAssigner;
 
-    public SongAdder(SongRepository songRepository) {
-        this.songRepository = songRepository;
-    }
 
-    SongDto addSong(final SongRequestDto songDto) {
+    SongResponseDto addSong(final SongRequestDto songDto) {
         SongLanguageDto language = songDto.language();
         SongLanguage songLanguage = SongLanguage.valueOf(language.name());
         Song songToSave = new Song(
@@ -28,10 +28,11 @@ class SongAdder {
                 songLanguage
         );
         Song save = songRepository.save(songToSave);
-        return SongDto.builder()
+        genreAssigner.assignGenre(songDto.genreId(), save.getId());
+        return SongResponseDto.builder()
                 .name(save.getName())
                 .id(save.getId())
-                .genreId(save.getGenre().getId())
+                .genreName(save.getGenre().getName())
                 .build();
 
     }

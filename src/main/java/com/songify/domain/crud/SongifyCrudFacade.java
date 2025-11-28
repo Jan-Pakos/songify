@@ -1,6 +1,7 @@
 package com.songify.domain.crud;
 
 import com.songify.domain.crud.dto.*;
+import com.songify.infrastructure.crud.song.controller.dto.request.PartiallyUpdateSongRequestDto;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
@@ -49,7 +50,7 @@ public class SongifyCrudFacade {
         return artistUpdater.updateArtistNameById(id, name);
     }
 
-    public SongDto addSong(final SongRequestDto dto) {
+    public SongResponseDto addSong(final SongRequestDto dto) {
         return songAdder.addSong(dto);
 
     }
@@ -62,17 +63,17 @@ public class SongifyCrudFacade {
         return artistRetriever.findAllArtists(pageable);
     }
 
-    public List<SongDto> findAllSongs(Pageable pageable) {
+    public List<SongResponseDto> findAllSongs(Pageable pageable) {
         return songRetriever.findAll(pageable)
                 .stream()
-                .map(song -> SongDto.builder()
+                .map(song -> SongResponseDto.builder()
                         .id(song.getId())
                         .name(song.getName())
                         .build())
                 .toList();
     }
 
-    public void updateSongById(Long id, SongDto newSongDto) {
+    public void updateSongById(Long id, SongResponseDto newSongDto) {
         songRetriever.existsById(id);
         // some domain validator
         Song songValidatedAndReadyToUpdate = new Song(newSongDto.name());
@@ -80,22 +81,22 @@ public class SongifyCrudFacade {
         songUpdater.updateById(id, songValidatedAndReadyToUpdate);
     }
 
-    public SongDto partiallyUpdateSongById(Long id, SongDto songFromRequest) {
+    public SongResponseDto partiallyUpdateSongById(Long id, PartiallyUpdateSongRequestDto songFromRequest) {
         Genre genreById = genreRetriever.findGenreById(songFromRequest.genreId());
         Song toSave = Song.builder()
                 .name(songFromRequest.name())
                 .genre(genreById)
                 .build();
         songUpdater.updateById(id, toSave);
-        return SongDto.builder()
+        return SongResponseDto.builder()
                 .id(toSave.getId())
                 .name(toSave.getName())
-                .genreId(genreById.getId())
+                .genreName(toSave.getGenre().getName())
                 .build();
 
     }
 
-    public SongDto deleteSongById(Long id) {
+    public SongResponseDto deleteSongById(Long id) {
         return songDeleter.deleteById(id);
 
     }
@@ -104,9 +105,9 @@ public class SongifyCrudFacade {
         artistDeleter.deleteArtistByIdWithAlbumsAndSongs(artistId);
     }
 
-    public SongDto findSongDtoById(Long id) {
+    public SongResponseDto findSongDtoById(Long id) {
         Song song = songRetriever.findSongById(id);
-        return SongDto.builder()
+        return SongResponseDto.builder()
                 .id(song.getId())
                 .name(song.getName())
                 .build();

@@ -1,6 +1,6 @@
 package com.songify.domain.crud;
 
-import com.songify.domain.crud.dto.SongDto;
+import com.songify.domain.crud.dto.SongResponseDto;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,10 +20,10 @@ class SongDeleter {
     private final GenreDeleter genreDeleter;
 
 
-    SongDto deleteById(Long id) {
+    SongResponseDto deleteById(Long id) {
         Song songDtoById = songRetriever.findSongById(id);
         Long genreId = songDtoById.getGenre().getId();
-        SongDto songDto = SongDto.builder()
+        SongResponseDto songDto = SongResponseDto.builder()
                 .id(songDtoById.getId())
                 .name(songDtoById.getName())
                 .build();

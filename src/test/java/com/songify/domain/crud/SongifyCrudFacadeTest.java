@@ -1,14 +1,11 @@
 package com.songify.domain.crud;
 
 import com.songify.domain.crud.dto.*;
-import org.assertj.core.api.AbstractListAssert;
-import org.assertj.core.api.ObjectAssert;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -87,22 +84,22 @@ class SongifyCrudFacadeTest {
         // given
         ArtistRequestDto pitbullArtist = ArtistRequestDto.builder().name("pitbull").build();
         Long artistId = songifyCrudFacade.addArtist(pitbullArtist).id();
-        SongDto song1 = songifyCrudFacade.addSong(SongRequestDto.builder()
+        SongResponseDto song1 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English).build());
-        SongDto song2 = songifyCrudFacade.addSong(SongRequestDto.builder()
+        SongResponseDto song2 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 2")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English).build());
-        SongDto song3 = songifyCrudFacade.addSong(SongRequestDto.builder()
+        SongResponseDto song3 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 4")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English).build());
-        SongDto song4 = songifyCrudFacade.addSong(SongRequestDto.builder()
+        SongResponseDto song4 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
@@ -140,7 +137,7 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should add album with song")
     public void should_add_album_with_song() {
         // given
-        SongDto songDto = songifyCrudFacade.addSong(SongRequestDto.builder()
+        SongResponseDto songDto = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
@@ -173,11 +170,11 @@ class SongifyCrudFacadeTest {
                 .build();
         assertThat(songifyCrudFacade.findAllSongs(Pageable.unpaged())).isEmpty();
         // when
-        SongDto songDto = songifyCrudFacade.addSong(song);
+        SongResponseDto songDto = songifyCrudFacade.addSong(song);
         // then
-        List<SongDto> allSongs = songifyCrudFacade.findAllSongs(Pageable.unpaged());
+        List<SongResponseDto> allSongs = songifyCrudFacade.findAllSongs(Pageable.unpaged());
         assertThat(allSongs)
-                .extracting(SongDto::id)
+                .extracting(SongResponseDto::id)
                 .containsExactly(songDto.id());
     }
 
@@ -195,7 +192,7 @@ class SongifyCrudFacadeTest {
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
                 .build();
-        SongDto songDto = songifyCrudFacade.addSong(song);
+        SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumDto albumDto = songifyCrudFacade.addAlbumWithSong(AlbumRequestDto.builder()
                 .title("Album 1")
                 .releaseDate(Instant.now())
@@ -221,7 +218,7 @@ class SongifyCrudFacadeTest {
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
                 .build();
-        SongDto songDto = songifyCrudFacade.addSong(song);
+        SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumRequestDto albumRequestDto = AlbumRequestDto.builder()
                 .title("Album 1")
                 .releaseDate(Instant.now())
@@ -245,7 +242,7 @@ class SongifyCrudFacadeTest {
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
                 .build();
-        SongDto songDto = songifyCrudFacade.addSong(song);
+        SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumRequestDto albumRequestDto = AlbumRequestDto.builder()
                 .title("Album 1")
                 .releaseDate(Instant.now())
@@ -270,7 +267,7 @@ class SongifyCrudFacadeTest {
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
                 .build();
-        SongDto songDto = songifyCrudFacade.addSong(song);
+        SongResponseDto songDto = songifyCrudFacade.addSong(song);
         // when
         Long songIdThatDoesntExist = songDto.id() + 10L;
         Throwable throwable = catchThrowable(() -> songifyCrudFacade.findSongDtoById(songIdThatDoesntExist));
@@ -295,7 +292,7 @@ class SongifyCrudFacadeTest {
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
                 .build();
-        SongDto songDto = songifyCrudFacade.addSong(song);
+        SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumDto album = songifyCrudFacade.addAlbumWithSong(AlbumRequestDto.builder()
                 .title("Album 1")
                 .releaseDate(Instant.now())

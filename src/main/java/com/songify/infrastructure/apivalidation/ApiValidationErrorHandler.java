@@ -1,6 +1,6 @@
 package com.songify.infrastructure.apivalidation;
 
-import com.songify.infrastructure.crud.song.controller.SongRestController;
+import com.songify.infrastructure.crud.song.controller.SongController;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ControllerAdvice(assignableTypes = SongRestController.class)
+@ControllerAdvice(assignableTypes = SongController.class)
 class ApiValidationErrorHandler {
 
     @ExceptionHandler(MethodArgumentNotValidException.class)

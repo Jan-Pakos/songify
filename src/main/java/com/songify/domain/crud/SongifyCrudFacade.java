@@ -5,7 +5,6 @@ import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Set;
 
@@ -26,6 +25,7 @@ public class SongifyCrudFacade {
     private final ArtistDeleter artistDeleter;
     private final ArtistAssigner artistAssigner;
     private final ArtistUpdater artistUpdater;
+    private final GenreRetriever genreRetriever;
 
 
     public ArtistDto addArtist(ArtistRequestDto dto) {
@@ -85,14 +85,16 @@ public class SongifyCrudFacade {
     }
 
     public SongDto partiallyUpdateSongById(Long id, SongDto songFromRequest) {
-        songRetriever.existsById(id);
-        Song songFromDatabase = songRetriever.findSongById(id);
-        Song toSave = new Song();
-
+        Genre genreById = genreRetriever.findGenreById(songFromRequest.genreId());
+        Song toSave = Song.builder()
+                .name(songFromRequest.name())
+                .genre(genreById)
+                .build();
         songUpdater.updateById(id, toSave);
         return SongDto.builder()
                 .id(toSave.getId())
                 .name(toSave.getName())
+                .genreId(genreById.getId())
                 .build();
 
     }
@@ -130,4 +132,7 @@ public class SongifyCrudFacade {
         return albumRetriever.findAlbumDtoById(albumId);
     }
 
+    public Set<GenreDto> getAllGenres(Pageable pageable) {
+        return genreRetriever.getAllGenres(pageable);
+    }
 }

@@ -310,7 +310,18 @@ class SongifyCrudFacadeTest {
         AlbumInfo albumInfo = songifyCrudFacade.findAlbumByIdWithArtistsAndSongs(album.id());
         Set<AlbumInfo.ArtistInfo> artists = albumInfo.getArtists();
         assertThat(artists).extracting("id").containsOnly(artist2.id());
+    }
 
+    @Test
+    @DisplayName("Should Add Genre With Id Zero When Genre Rap Is Sent")
+    public void should_add_genre_with_id_zero_when_genre_rap_is_sent(){
+        // given
+        GenreRequestDto request = GenreRequestDto.builder().name("Rap").build();
+        assertThat(songifyCrudFacade.getAllGenres(Pageable.unpaged())).isEmpty();
+        // when
+        GenreDto genreDto = songifyCrudFacade.addGenre(request);
+        // then
+        assertThat(songifyCrudFacade.getAllGenres(Pageable.unpaged())).hasSize(1);
     }
 
 }

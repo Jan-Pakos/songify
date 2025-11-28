@@ -36,6 +36,7 @@ public class SongControllerMapper {
         return SongDto
                 .builder()
                 .name(dto.name())
+                .genreId(dto.genreId())
                 .build();
     }
 

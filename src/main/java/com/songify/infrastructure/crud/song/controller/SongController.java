@@ -37,7 +37,7 @@ import static com.songify.infrastructure.crud.song.controller.SongControllerMapp
 @Log4j2
 @RequestMapping("/songs")
 @AllArgsConstructor
-public class SongRestController {
+public class SongController {
     private final SongifyCrudFacade songFacade;
 
     @GetMapping
@@ -86,4 +86,5 @@ public class SongRestController {
         PartiallyUpdateSongResponseDto body = SongControllerMapper.mapFromSongDtoToPartiallyUpdateSongResponseDto(savedSong);
         return ResponseEntity.ok(body);
     }
+
 }

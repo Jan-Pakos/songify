@@ -28,7 +28,11 @@ class SongAdder {
                 songLanguage
         );
         Song save = songRepository.save(songToSave);
-        return new SongDto(save.getId(), save.getName());
+        return SongDto.builder()
+                .name(save.getName())
+                .id(save.getId())
+                .genreId(save.getGenre().getId())
+                .build();
 
     }
 }

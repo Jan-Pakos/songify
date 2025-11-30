@@ -101,6 +101,9 @@ class HappyPathIntegrationTest {
                 .andExpect(jsonPath("$.songs").exists())
                 .andExpect(jsonPath("$.songs").isArray())
                 .andExpect(jsonPath("$.songs.length()").value(0));
+        // User sends a POST request to /genres with body { "name" : "Hip Hop" }
+        // and the genre "Hip Hop" is returned with id 1 and HTTP status 201.
+        mockMvc.perform(post("/genre")).andExpect(status().isCreated()).andExpect(jsonPath("$.genre").exists());
     }
 
 

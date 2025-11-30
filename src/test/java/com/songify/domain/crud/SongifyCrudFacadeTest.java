@@ -82,27 +82,33 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should delete artist with album and songs by id when artist has one album and was the only artist in that album")
     public void should_delete_artist_with_album_and_songs_by_id_when_artist_has_one_album_and_was_the_only_artist_in_that_album() {
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         ArtistRequestDto pitbullArtist = ArtistRequestDto.builder().name("pitbull").build();
         Long artistId = songifyCrudFacade.addArtist(pitbullArtist).id();
         SongResponseDto song1 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
+                .genreId(genreId)
                 .language(SongLanguageDto.English).build());
         SongResponseDto song2 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 2")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
+                .genreId(genreId)
                 .language(SongLanguageDto.English).build());
         SongResponseDto song3 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 4")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
+                .genreId(genreId)
                 .language(SongLanguageDto.English).build());
         SongResponseDto song4 = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
+                .genreId(genreId)
                 .language(SongLanguageDto.English).build());
         Long songId = song1.id();
         Long song2Id = song2.id();
@@ -137,11 +143,14 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should add album with song")
     public void should_add_album_with_song() {
         // given
+        songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
         SongResponseDto songDto = songifyCrudFacade.addSong(SongRequestDto.builder()
                 .title("Song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
-                .language(SongLanguageDto.English).build());
+                .language(SongLanguageDto.English)
+                .genreId(0L)
+                .build());
         AlbumRequestDto album = AlbumRequestDto.builder()
                 .title("Album 1")
                 .releaseDate(Instant.now())
@@ -160,13 +169,15 @@ class SongifyCrudFacadeTest {
     @Test
     @DisplayName("Should add song")
     public void should_add_song() {
-        // TODO homework
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         SongRequestDto song = SongRequestDto.builder()
                 .title("song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
+                .genreId(genreId)
                 .build();
         assertThat(songifyCrudFacade.findAllSongs(Pageable.unpaged())).isEmpty();
         // when
@@ -182,6 +193,8 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should add artist to album")
     public void should_add_artist_to_album() {
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         ArtistRequestDto artistRequestDto = ArtistRequestDto.builder()
                 .name("artist 1")
                 .build();
@@ -191,6 +204,7 @@ class SongifyCrudFacadeTest {
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
+                .genreId(genreId)
                 .build();
         SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumDto albumDto = songifyCrudFacade.addAlbumWithSong(AlbumRequestDto.builder()
@@ -212,11 +226,14 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should return album by id")
     public void should_return_album_by_id() {
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         SongRequestDto song = SongRequestDto.builder()
                 .title("song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
+                .genreId(genreId)
                 .build();
         SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumRequestDto albumRequestDto = AlbumRequestDto.builder()
@@ -236,11 +253,14 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should throw exception when album not found by id")
     public void should_throw_exception_when_album_not_found_by_id() {
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         SongRequestDto song = SongRequestDto.builder()
                 .title("song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
+                .genreId(genreId)
                 .build();
         SongResponseDto songDto = songifyCrudFacade.addSong(song);
         AlbumRequestDto albumRequestDto = AlbumRequestDto.builder()
@@ -248,7 +268,6 @@ class SongifyCrudFacadeTest {
                 .releaseDate(Instant.now())
                 .songIds(Set.of(songDto.id()))
                 .build();
-        AlbumDto albumAddedToDB = songifyCrudFacade.addAlbumWithSong(albumRequestDto);
         // when
         Long albumIdThatDoestntExist = 10L;
         Throwable throwable = catchThrowable(() -> songifyCrudFacade.findAlbumById(albumIdThatDoestntExist));
@@ -261,11 +280,14 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should throw exception when song not found by id")
     public void should_throw_exception_when_song_not_found_by_id() {
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         SongRequestDto song = SongRequestDto.builder()
                 .title("song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
                 .language(SongLanguageDto.English)
+                .genreId(genreId)
                 .build();
         SongResponseDto songDto = songifyCrudFacade.addSong(song);
         // when
@@ -280,6 +302,8 @@ class SongifyCrudFacadeTest {
     @DisplayName("Should delete only artist from album by id When there are more than 1 artist in album")
     public void should_delete_only_artist_from_album_by_when_there_were_more_than_one_artist_in_album() {
         // given
+        GenreDto genreDto = songifyCrudFacade.addGenre(GenreRequestDto.builder().name("Hip Hop").build());
+        Long genreId = genreDto.id();
         ArtistDto artist1 = songifyCrudFacade.addArtist(ArtistRequestDto.builder()
                 .name("artist 1")
                 .build());
@@ -290,6 +314,7 @@ class SongifyCrudFacadeTest {
                 .title("song 1")
                 .releaseDate(Instant.now())
                 .durationInSeconds(100L)
+                .genreId(genreId)
                 .language(SongLanguageDto.English)
                 .build();
         SongResponseDto songDto = songifyCrudFacade.addSong(song);
@@ -319,6 +344,7 @@ class SongifyCrudFacadeTest {
         GenreDto genreDto = songifyCrudFacade.addGenre(request);
         // then
         assertThat(songifyCrudFacade.getAllGenres(Pageable.unpaged())).hasSize(1);
+        assertThat(songifyCrudFacade.findGenreById(genreDto.id())).extracting("name").isEqualTo("Rap");
     }
 
 }

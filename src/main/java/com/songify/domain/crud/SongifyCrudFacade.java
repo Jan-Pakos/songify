@@ -132,4 +132,12 @@ public class SongifyCrudFacade {
     public Set<GenreDto> getAllGenres(Pageable pageable) {
         return genreRetriever.getAllGenres(pageable);
     }
+
+    public GenreDto findGenreById(Long id) {
+        Genre genreById = genreRetriever.findGenreById(id);
+        return GenreDto.builder()
+                .name(genreById.getName())
+                .id(genreById.getId())
+                .build();
+    }
 }

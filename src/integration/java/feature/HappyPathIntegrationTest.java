@@ -70,7 +70,7 @@ class HappyPathIntegrationTest {
                                 }
                         """.trim())
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk()).andExpect(jsonPath("$.name").value("Hip Hop"));
+                .andExpect(status().isOk()).andExpect(jsonPath("$.name").value(GENRE_HIP_HOP));
 
         // 3 When I send a GET request to /songs and sees nothing.
         mockMvc.perform(get("/songs")
@@ -93,7 +93,7 @@ class HappyPathIntegrationTest {
                         .content(objectMapper.writeValueAsString(requestDto))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.song.name").value("Lose Yourself"))
+                .andExpect(jsonPath("$.song.name").value(SONG_LOSE_YOURSELF))
                 .andExpect(jsonPath("$.song.id").exists());
 
         // 5 User sends a POST request to /songs with body { "title": "Stan", "duration": 356 }
@@ -109,7 +109,7 @@ class HappyPathIntegrationTest {
                         .content(objectMapper.writeValueAsString(requestDto2))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.song.name").value("Stan"))
+                .andExpect(jsonPath("$.song.name").value(SONG_STAN))
                 .andExpect(jsonPath("$.song.id").exists());
 
         // 6 User sends a GET request to /artists and receives an empty list.
@@ -130,7 +130,7 @@ class HappyPathIntegrationTest {
                         """.trim())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.name").value("Eminem"))
+                .andExpect(jsonPath("$.name").value(ARTIST_EMINEM))
                 .andExpect(jsonPath("$.id").value(1));
 
         // 8. User sends a GET request to /albums and receives an empty list.
@@ -155,7 +155,7 @@ class HappyPathIntegrationTest {
                         """.trim())
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("The Eminem Show"))
+                .andExpect(jsonPath("$.title").value(ALBUM_TITLE))
                 .andExpect(jsonPath("$.id").value(1));
 
         // 9. User sends a PUT request to /artists/1/1 to assign artist with id 1 to album with id 1
@@ -164,8 +164,8 @@ class HappyPathIntegrationTest {
         // 10. User sends a GET request to /albums/1 and receives the album ("The Eminem Show") and the songs ("Lose Yourself")
         //and ("Stan") with genre "Hip Hop"
         mockMvc.perform(get("/albums/1")).andExpect(status().isOk())
-                .andExpect(jsonPath("$.title").value("The Eminem Show"))
-                .andExpect(jsonPath("$.artists[0].name").value("Eminem"));
+                .andExpect(jsonPath("$.title").value(ALBUM_TITLE))
+                .andExpect(jsonPath("$.artists[0].name").value(ARTIST_EMINEM));
 
     }
 

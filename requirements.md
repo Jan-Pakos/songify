@@ -47,3 +47,16 @@ given there are no songs, artists, albums, or genres in the system
 10. User sends a GET request to /albums/1 and receives the album ("The Eminem Show") and the songs ("Lose Yourself")
 and ("Stan") with genre "Hip Hop"
 
+# SECURITY
+Anyone can view songs, albums, artists etc (without logging in/authorization)
+There are 2 roles: ROLE_USER & ROLE_ADMIN
+Using a stateless token JWT (given after login) - own implementation then Oauth google
+Only the admin can see the logins and roles of users at endpoint /users
+To become a user, registration is required with username & password - own implementation & Oauth Google
+Both admin and user are saved to the database, admin is created with flyway migration
+User can view songs but cant manage them - in the future the user will be able to manage their songs
+Only the admin can change the state of the application (add, delete and update songs/albums/genres/artists)
+HTTPS encryption with an openssl certificate
+CORS
+CSRF
+bonus - email confirmation after signup

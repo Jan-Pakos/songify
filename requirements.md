@@ -34,16 +34,16 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 
 # HAPPY PATH (user creates an Eminem album with songs "Lose Yourself" and "Stan" with genre "Hip Hop")
 given there are no songs, artists, albums, or genres in the system
-1. When I send a GET request to /songs and sees nothing.
-2. User sends a POST request to /songs with body { "title": "Lose Yourself", "duration": 326 } to create the song "Lose Yourself" the song is returned with id 1 and HTTP status 201.
-3. User sends a POST request to /songs with body { "title": "Stan", "duration": 356 } to create the song "Lose Yourself" the song is returned with id 2 and HTTP status 201.
-4. User sends a GET request to /artists and receives an empty list.
-5. User sends a POST request to /artists with body { "name" : "Eminem" } and the artist "Eminem" is returned with id 1 and HTTP status 201.
-5. User sends a GET request to /genres and receives an empty list.
-6. User sends a POST request to /genres with body { "name" : "Hip Hop" } and the genre "Hip Hop" is returned with id 1 and HTTP status 201.
-7. User sends a PUT request to /songs/1 to assign artist id 1 and genre id 1 to the song "Lose Yourself".
-8. User sends a PUT request to /songs/2 to assign artist id 1 and genre id 1 to the song "Stan".
-9. User sends a GET request to /albums and receives an empty list.
-10. User sends a POST request to /albums with body { "title": "The Eminem Show" } then the album "The Eminem Show" is returned with id 1 and HTTP status 201.
-11. User sends a PATCH request to /albums/1 to add song with id 1 and artist id 1 to the album "The Eminem Show".
-12. User sends a PATCH request to /albums/1 to add song with id 2 and artist id 1 to the album "The Eminem Show".
+1. User sends a GET request to /songs and sees nothing.
+2. User sends a GET request to /genres and receives an empty list.
+3. User sends a POST request to /genres with body { "name" : "Hip Hop" } and the genre "Hip Hop" is returned with id 1.
+4. User sends a POST request to /songs with body { "title": "Lose Yourself", "duration": 326, "language" : "English", "genreId" : 1 } to create the song "Lose Yourself" the song is returned with id 1.
+5. User sends a POST request to /songs with body { "title": "Stan", "duration": 356, "language" : "English", "genreId" : 1 } to create the song "Lose Yourself" the song is returned with id 2.
+6. User sends a GET request to /artists and receives an empty list.
+7. User sends a POST request to /artists with body { "name" : "Eminem" } and the artist "Eminem" is returned with id 1.
+8. User sends a POST request to /albums with body { "title": "The Eminem Show", "releaseDate": "2025-12-01T18:36:39.085Z",
+   "songIds": [ 1,2 ] } then the album "The Eminem Show" is returned with id 1.
+9. User sends a PUT request to /artists/1/1 to assign artist with id 1 to album with id 1
+10. User sends a GET request to /albums/1 and receives the album ("The Eminem Show") and the songs ("Lose Yourself")
+and ("Stan") with genre "Hip Hop"
+

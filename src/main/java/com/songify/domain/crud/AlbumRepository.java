@@ -1,13 +1,10 @@
 package com.songify.domain.crud;
 
-import com.songify.domain.crud.dto.AlbumDto;
-import com.songify.domain.crud.dto.AlbumInfo;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Optional;
@@ -20,7 +17,7 @@ interface AlbumRepository extends Repository<Album, Long> {
     Optional<Album> findById(Long id);
 
     @Query("select a from Album a left join fetch a.songs s left join fetch a.artists ar where a.id = :id")
-    Optional<AlbumInfo> findAlbumByIdWithSongsAndArtists(@Param("id") Long id);
+    Optional<Album> findAlbumByIdWithSongsAndArtists(@Param("id") Long id);
 
     @Query("select a from Album a inner join a.artists artists where artists.id = :id")
     Set<Album> findAllAlbumsByArtistId(@Param("id") Long id);

@@ -1,7 +1,6 @@
 package com.songify.domain.crud;
 
 import com.songify.domain.crud.dto.SongResponseDto;
-import com.songify.domain.crud.dto.SongLanguageDto;
 import com.songify.domain.crud.dto.SongRequestDto;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -15,25 +14,26 @@ import org.springframework.stereotype.Service;
 class SongAdder {
 
     private final SongRepository songRepository;
-    private final GenreAssigner genreAssigner;
+    private final GenreRetriever genreRetriever;
 
 
     SongResponseDto addSong(final SongRequestDto songDto) {
-        SongLanguageDto language = songDto.language();
-        SongLanguage songLanguage = SongLanguage.valueOf(language.name());
+        Genre genre = genreRetriever.findGenreById(songDto.genreId());
+        SongLanguage songLanguage = SongLanguage.valueOf(songDto.language().name());
+
         Song songToSave = new Song(
                 songDto.title(),
                 songDto.releaseDate(),
                 songDto.durationInSeconds(),
-                songLanguage
+                songLanguage,
+                genre
         );
-        Song save = songRepository.save(songToSave);
-        genreAssigner.assignGenre(songDto.genreId(), save.getId());
-        return SongResponseDto.builder()
-                .name(save.getName())
-                .id(save.getId())
-                .genreName(save.getGenre().getName())
-                .build();
+        Song savedSong = songRepository.save(songToSave);
 
+        return SongResponseDto.builder()
+                .name(savedSong.getName())
+                .id(savedSong.getId())
+                .genreName(savedSong.getGenre().getName())
+                .build();
     }
 }

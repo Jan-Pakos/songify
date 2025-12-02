@@ -40,7 +40,8 @@ class Song extends BaseEntity {
 
     private Long duration;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genre_id")
     private Genre genre;
 
     @Enumerated(EnumType.STRING)
@@ -55,5 +56,13 @@ class Song extends BaseEntity {
         this.releaseDate = releaseDate;
         this.duration = duration;
         this.language = language;
+    }
+
+    public Song(String title, Instant instant, Long aLong, SongLanguage language, Genre genreById) {
+        this.name = title;
+        this.releaseDate = instant;
+        this.duration = aLong;
+        this.language = language;
+        this.genre = genreById;
     }
 }

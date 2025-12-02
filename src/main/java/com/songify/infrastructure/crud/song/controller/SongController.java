@@ -39,6 +39,11 @@ import static com.songify.infrastructure.crud.song.controller.SongControllerMapp
 public class SongController {
     private final SongifyCrudFacade songFacade;
 
+    @GetMapping("/check-thread")
+    public String checkThread() {
+        return Thread.currentThread().toString();
+    }
+
     @GetMapping
     ResponseEntity<GetAllSongsResponseDto> getAllSongs(Pageable pageable) {
         List<SongResponseDto> allSongs = songFacade.findAllSongs(pageable);

@@ -55,7 +55,7 @@ public class SongifyCrudFacade {
 
     }
 
-    public AlbumInfo findAlbumByIdWithArtistsAndSongs(Long id) {
+    public AlbumResponseDto findAlbumByIdWithArtistsAndSongs(Long id) {
         return albumRetriever.findAlbumByIdWithArtistsAndSongs(id);
     }
 
@@ -139,5 +139,9 @@ public class SongifyCrudFacade {
                 .name(genreById.getName())
                 .id(genreById.getId())
                 .build();
+    }
+
+    public Set<AlbumDto> getAllAlbums(Pageable pageable) {
+        return albumRetriever.findAllAlbums(pageable);
     }
 }

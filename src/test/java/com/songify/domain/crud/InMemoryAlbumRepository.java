@@ -1,7 +1,5 @@
 package com.songify.domain.crud;
 
-import com.songify.domain.crud.dto.AlbumDto;
-import com.songify.domain.crud.dto.AlbumInfo;
 import org.springframework.data.domain.Pageable;
 
 import java.util.*;
@@ -28,10 +26,9 @@ class InMemoryAlbumRepository implements AlbumRepository {
     }
 
     @Override
-    public Optional<AlbumInfo> findAlbumByIdWithSongsAndArtists(Long id) {
+    public Optional<Album> findAlbumByIdWithSongsAndArtists(Long id) {
         Album album = db.get(id);
-        AlbumInfoTestImpl albumInfoTest = new AlbumInfoTestImpl(album);
-        return Optional.of(albumInfoTest);
+        return Optional.of(album);
     }
 
     @Override

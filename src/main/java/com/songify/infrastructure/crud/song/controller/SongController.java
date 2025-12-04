@@ -1,6 +1,5 @@
 package com.songify.infrastructure.crud.song.controller;
 
-
 import com.songify.domain.crud.SongifyCrudFacade;
 import com.songify.domain.crud.dto.SongResponseDto;
 import com.songify.domain.crud.dto.SongRequestDto;
@@ -8,9 +7,7 @@ import com.songify.infrastructure.crud.song.controller.dto.request.PartiallyUpda
 import com.songify.infrastructure.crud.song.controller.dto.request.UpdateSongRequestDto;
 import com.songify.infrastructure.crud.song.controller.dto.response.*;
 import jakarta.validation.Valid;
-
 import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Pageable;
@@ -31,18 +28,12 @@ import static com.songify.infrastructure.crud.song.controller.SongControllerMapp
 import static com.songify.infrastructure.crud.song.controller.SongControllerMapper.mapFromSongToGetAllSongsResponseDto;
 import static com.songify.infrastructure.crud.song.controller.SongControllerMapper.mapFromSongToUpdateSongResponseDto;
 
-
 @RestController
 @Log4j2
 @RequestMapping("/songs")
 @AllArgsConstructor
 public class SongController {
     private final SongifyCrudFacade songFacade;
-
-    @GetMapping("/check-thread")
-    public String checkThread() {
-        return Thread.currentThread().toString();
-    }
 
     @GetMapping
     ResponseEntity<GetAllSongsResponseDto> getAllSongs(Pageable pageable) {

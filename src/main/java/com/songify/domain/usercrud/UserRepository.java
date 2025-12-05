@@ -1,7 +1,6 @@
 package com.songify.domain.usercrud;
 
 import org.springframework.data.repository.Repository;
-
 import java.util.Optional;
 
 interface UserRepository extends Repository<User, Long> {

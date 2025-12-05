@@ -11,6 +11,7 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/db.migration/inserts/V14__insert_artist_albums.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db.migration/inserts/V15__insert_genres.sql" dialect="PostgreSQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/db.migration/inserts/V16__insert_songs.sql" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/db.migration/inserts/V20__insert_users.sql" dialect="PostgreSQL" />
     <file url="PROJECT" dialect="PostgreSQL" />
   </component>
 </project>

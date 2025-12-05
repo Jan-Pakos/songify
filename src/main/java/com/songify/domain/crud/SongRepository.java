@@ -16,7 +16,6 @@ interface SongRepository extends Repository<Song, Long> {
 
     Song save(Song song);
 
-
     List<Song> findAll(Pageable pageable);
 
     @Query("SELECT s FROM Song s WHERE s.id = :id")
@@ -30,9 +29,7 @@ interface SongRepository extends Repository<Song, Long> {
     @Query("UPDATE Song s SET s.name = :#{#song.name} WHERE s.id = :id")
     void updateById(@Param("id") Long id, @Param("song") Song song);
 
-
     boolean existsById(Long id);
-
 
     @Modifying
     @Query("delete from Song s where s.id in :ids")

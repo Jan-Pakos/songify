@@ -5,7 +5,6 @@ import com.songify.domain.usercrud.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
@@ -27,7 +26,7 @@ class UserDetailsServiceImpl implements UserDetailsManager {
 
     @Override
     public void createUser(UserDetails user) {
-        if(userExists(user.getUsername())){
+        if (userExists(user.getUsername())) {
             log.warn(user.getUsername() + " already exists");
             throw new RuntimeException("Username already exists");
         }
@@ -57,4 +56,5 @@ class UserDetailsServiceImpl implements UserDetailsManager {
     public boolean userExists(String username) {
         return userRepository.existsByEmail(username);
     }
+
 }

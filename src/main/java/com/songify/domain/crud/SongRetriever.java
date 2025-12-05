@@ -18,7 +18,6 @@ class SongRetriever {
         this.songRepository = songRepository;
     }
 
-
     List<Song> findAll(Pageable pageable) {
         log.info("retrieving all songs: ");
         return songRepository.findAll(pageable);
@@ -34,6 +33,5 @@ class SongRetriever {
             throw new SongNotFoundException("Song with id " + id + " not found");
         }
     }
-
 
 }

@@ -18,7 +18,7 @@ class RegisterController {
     private final UserDetailsManager userDetailsManager;
 
     @PostMapping("/register")
-    public ResponseEntity<RegisterUserResponseDto> register(@RequestBody RegisterUserRequestDto registerUserRequestDto){
+    public ResponseEntity<RegisterUserResponseDto> register(@RequestBody RegisterUserRequestDto registerUserRequestDto) {
         String password = registerUserRequestDto.password();
         String userName = registerUserRequestDto.userName();
         UserDetails user = User.builder()

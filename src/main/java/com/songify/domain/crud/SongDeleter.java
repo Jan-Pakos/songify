@@ -14,11 +14,9 @@ import java.util.Set;
 @AllArgsConstructor(access = lombok.AccessLevel.PACKAGE)
 class SongDeleter {
 
-
     private final SongRepository songRepository;
     private final SongRetriever songRetriever;
     private final GenreDeleter genreDeleter;
-
 
     SongResponseDto deleteById(Long id) {
         Song songDtoById = songRetriever.findSongById(id);

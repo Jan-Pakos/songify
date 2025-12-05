@@ -16,7 +16,6 @@ class SongAdder {
     private final SongRepository songRepository;
     private final GenreRetriever genreRetriever;
 
-
     SongResponseDto addSong(final SongRequestDto songDto) {
         Genre genre = genreRetriever.findGenreById(songDto.genreId());
         SongLanguage songLanguage = SongLanguage.valueOf(songDto.language().name());
@@ -36,4 +35,5 @@ class SongAdder {
                 .genreName(savedSong.getGenre().getName())
                 .build();
     }
+
 }

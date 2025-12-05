@@ -42,7 +42,6 @@ class AlbumRetriever {
         );
     }
 
-
     Set<Album> findAlbumsByArtistId(final Long id) {
         return albumRepository.findAllAlbumsByArtistId(id);
     }

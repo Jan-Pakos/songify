@@ -1,11 +1,11 @@
 SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 
 # Functional requirements for the Songify Application
-1. ~~One can add an artist (artist's name).~~ (DONE)
-2. ~~One can add a music genre (genre name).~~ (DONE)
-~~3. One can add an album (title, release date, but it must contain at least one song).~~ (DONE)
-~~4. One can add a song (title, duration, release date, and the artist it belongs to).~~ (DONE)
-~~5. One can delete an artist (this also deletes their songs and albums).~~ (DONE)
+1. ~~One can add an artist (artist's name).~~ 
+2. ~~One can add a music genre (genre name).~~
+~~3. One can add an album (title, release date, but it must contain at least one song).~~
+~~4. One can add a song (title, duration, release date, and the artist it belongs to).~~
+~~5. One can delete an artist (this also deletes their songs and albums).~~
 6. One can delete a music genre (but there must not be any song currently assigned to that genre). 
 7. One can delete an album (but only when there are no songs assigned to the album). 
 ~~8. One can delete a song, but the album and artist is not deleted if the album only had that song.~~
@@ -15,8 +15,7 @@ SONGIFY: APP FOR MANAGING ALBUMS, ARTISTS, AND SONGS
 12. One can edit a song (duration, artist, song name). 
 13. One can assign songs to artists, through albums
 ~~14. One can assign artists to albums (an album can have multiple artists, an artist can have multiple albums).~~ 
-15. One can assign only one music genre to a song. 
-16. If no genre is assigned to a song, then display "Default"
+15. One can assign only one music genre to a song.
 ~~17. One can display all songs.~~ 
 18. One can display all genres. 
 ~~19. One can display all artists.~~ 
@@ -48,15 +47,15 @@ given there are no songs, artists, albums, or genres in the system
 and ("Stan") with genre "Hip Hop"
 
 # SECURITY
-Anyone can view songs, albums, artists etc (without logging in/authorization)
-There are 2 roles: ROLE_USER & ROLE_ADMIN
-Using a stateless token JWT (given after login) - own implementation then Oauth google
-Only the admin can see the logins and roles of users at endpoint /users
-To become a user, registration is required with username & password - own implementation & Oauth Google
-Both admin and user are saved to the database, admin is created with flyway migration
-User can view songs but cant manage them - in the future the user will be able to manage their songs
-Only the admin can change the state of the application (add, delete and update songs/albums/genres/artists)
-HTTPS encryption with an openssl certificate
-CORS
-CSRF
-bonus - email confirmation after signup
+1. Anyone can view songs, albums, artists etc (without logging in/authorization)
+2. There are 2 roles: ROLE_USER & ROLE_ADMIN
+3. Using a stateless token JWT (given after login) - own implementation then Oauth google
+4. Only the admin can see the logins and roles of users at endpoint /users
+5. To become a user, registration is required with username & password - own implementation & Oauth Google
+6. Both admin and user are saved to the database, admin is created with flyway migration
+7. User can view songs but cant manage them - in the future the user will be able to manage their songs
+8. Only the admin can change the state of the application (add, delete and update songs/albums/genres/artists)
+9. HTTPS encryption with an openssl certificate
+10. CORS
+11. CSRF
+12. bonus - email confirmation after signup

@@ -12,18 +12,15 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 class SongUpdater {
 
-
     private final SongRetriever songRetriever;
     private final SongRepository songRepository;
     private final SongAdder songAdder;
 
-
-     void updateById(Long id, @Valid Song request) {
+    void updateById(Long id, @Valid Song request) {
         Song songById = songRetriever.findSongById(id);
         songById.setName(request.getName());
         log.info("updated song with id: " + id + " to new values" + request);
     }
-
 
     Song updatePartiallyById(Long id, Song songFromRequest) {
         Song songFromDataBase = songRetriever.findSongById(id);

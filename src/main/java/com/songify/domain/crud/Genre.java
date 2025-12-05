@@ -25,6 +25,7 @@ class Genre extends BaseEntity {
             sequenceName = "genre_id_seq",
             allocationSize = 1
     )
+
     private Long id;
 
     private String name;

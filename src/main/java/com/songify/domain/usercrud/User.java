@@ -16,7 +16,6 @@ import java.util.HashSet;
 @AllArgsConstructor
 public class User extends BaseEntity {
 
-
     @Id
     @GeneratedValue(generator = "users_id_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(

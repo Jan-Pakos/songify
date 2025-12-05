@@ -7,12 +7,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.UserDetailsManager;
 
 @Configuration
 class SecurityConfig {
 
     @Bean
-    public UserDetailsService userDetailsService() {
+    public UserDetailsManager userDetailsService() {
         var manager = new InMemoryUserDetailsManager();
         var user1 = User.withUsername("user1").password("password").roles("USER").build();
         var user2 = User.withUsername("user2").password("password").roles("USER", "ADMIN").build();

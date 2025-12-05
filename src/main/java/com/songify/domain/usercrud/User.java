@@ -2,10 +2,7 @@ package com.songify.domain.usercrud;
 
 import com.songify.domain.crud.util.BaseEntity;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -15,7 +12,9 @@ import java.util.HashSet;
 @Getter
 @Setter
 @NoArgsConstructor
-class User extends BaseEntity {
+@Builder
+@AllArgsConstructor
+public class User extends BaseEntity {
 
 
     @Id
@@ -32,8 +31,10 @@ class User extends BaseEntity {
 
     private String password;
 
+    @Builder.Default
     private boolean enabled = true;
 
+    @Builder.Default
     private Collection<String> authorities = new HashSet<>();
 
     public User(String email, String password, boolean enabled, Collection<String> authorities) {

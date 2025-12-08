@@ -58,6 +58,18 @@ class SecurityConfig {
                 .requestMatchers(HttpMethod.PATCH,"/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT,"/songs/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH,"/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT,"/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH,"/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT,"/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH,"/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT,"/genres/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
         return http.build();
     }

@@ -3,7 +3,9 @@ package com.songify.infrastructure.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.CorsConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -37,6 +39,11 @@ class SecurityConfig {
     }
 
     @Bean
+    AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
+        return config.getAuthenticationManager();
+    }
+
+    @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.formLogin(c -> c.disable());
         http.httpBasic(c -> c.disable());
@@ -54,18 +61,22 @@ class SecurityConfig {
                 .requestMatchers(HttpMethod.GET,"/artists/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/albums/**").permitAll()
                 .requestMatchers(HttpMethod.GET,"/genres/**").permitAll()
+
                 .requestMatchers(HttpMethod.POST,"/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PATCH,"/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/songs/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT,"/songs/**").hasRole("ADMIN")
+
                 .requestMatchers(HttpMethod.POST,"/albums/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PATCH,"/albums/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/albums/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT,"/albums/**").hasRole("ADMIN")
+
                 .requestMatchers(HttpMethod.POST,"/artists/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PATCH,"/artists/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/artists/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PUT,"/artists/**").hasRole("ADMIN")
+
                 .requestMatchers(HttpMethod.POST,"/genres/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.PATCH,"/genres/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE,"/genres/**").hasRole("ADMIN")
@@ -86,5 +97,4 @@ class SecurityConfig {
             cors.configurationSource(source);
         };
     }
-
 }

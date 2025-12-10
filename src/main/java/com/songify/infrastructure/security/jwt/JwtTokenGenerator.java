@@ -32,7 +32,7 @@ class JwtTokenGenerator {
 
         PrivateKey privateKey = keyPair.getPrivate();
 
-        Algorithm algorithm = Algorithm.RSA256(null,(RSAPrivateKey) privateKey);
+        Algorithm algorithm = Algorithm.RSA256(null, (RSAPrivateKey) privateKey);
         return JWT.create()
                 .withSubject(securityUser.getUsername())
                 .withIssuedAt(issuedAt)

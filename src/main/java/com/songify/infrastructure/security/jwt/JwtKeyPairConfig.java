@@ -25,9 +25,7 @@ class JwtKeyPairConfig {
         log.info("public key: " + Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded()));
         log.info("private key: " + Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded()));
 
-        // Save public key to file
         saveKeyToFile("public_key.pem", keyPair.getPublic().getEncoded(), true);
-        // Save private key to file
         saveKeyToFile("private_key.pem", keyPair.getPrivate().getEncoded(), false);
         return keyPair;
     }

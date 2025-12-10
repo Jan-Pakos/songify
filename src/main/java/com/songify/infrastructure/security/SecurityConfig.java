@@ -61,37 +61,37 @@ class SecurityConfig {
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/users/register/**").permitAll()
                 .requestMatchers("/token/**").permitAll()
-                .requestMatchers(HttpMethod.GET,"/songs/**").permitAll()
-                .requestMatchers(HttpMethod.GET,"/artists/**").permitAll()
-                .requestMatchers(HttpMethod.GET,"/albums/**").permitAll()
-                .requestMatchers(HttpMethod.GET,"/genres/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/songs/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/artists/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/albums/**").permitAll()
+                .requestMatchers(HttpMethod.GET, "/genres/**").permitAll()
 
-                .requestMatchers(HttpMethod.POST,"/songs/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PATCH,"/songs/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE,"/songs/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT,"/songs/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/songs/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, "/songs/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/songs/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/songs/**").hasRole("ADMIN")
 
-                .requestMatchers(HttpMethod.POST,"/albums/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PATCH,"/albums/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE,"/albums/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT,"/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, "/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/albums/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/albums/**").hasRole("ADMIN")
 
-                .requestMatchers(HttpMethod.POST,"/artists/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PATCH,"/artists/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE,"/artists/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT,"/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, "/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/artists/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/artists/**").hasRole("ADMIN")
 
-                .requestMatchers(HttpMethod.POST,"/genres/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PATCH,"/genres/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.DELETE,"/genres/**").hasRole("ADMIN")
-                .requestMatchers(HttpMethod.PUT,"/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST, "/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH, "/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/genres/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/genres/**").hasRole("ADMIN")
                 .anyRequest().authenticated());
         return http.build();
     }
 
     public Customizer<CorsConfigurer<HttpSecurity>> corsConfigurerCustomizer() {
         return cors -> {
-            CorsConfigurationSource source = request ->  {
+            CorsConfigurationSource source = request -> {
                 CorsConfiguration corsConfiguration = new CorsConfiguration();
                 corsConfiguration.setAllowedOrigins(List.of("http://localhost:3000"));
                 corsConfiguration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH"));

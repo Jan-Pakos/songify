@@ -19,8 +19,8 @@ public class JwtTokenController {
         String token = jwtTokenGenerator.authenticateAndGenerateToken(dto.username(), dto.password());
         return ResponseEntity.ok(
                 JwtResponseDto.builder()
-                .token(token)
-                .build());
+                        .token(token)
+                        .build());
 
     }
 }

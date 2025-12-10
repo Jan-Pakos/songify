@@ -15,7 +15,7 @@ import java.time.*;
 
 @Component
 @RequiredArgsConstructor
-class JwtTokenGenerator {
+public class JwtTokenGenerator {
 
     public static final String ROLES_CLAIM = "roles";
     private final AuthenticationManager authenticationManager;
@@ -23,22 +23,25 @@ class JwtTokenGenerator {
     private final JwtConfigurationProperties properties;
     private final KeyPair keyPair;
 
-    public String authenticateAndGenerateToken(String username, String password) throws NoSuchAlgorithmException {
-        UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-        Authentication authentication = authenticationManager.authenticate(authenticationToken);
-        SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-        Instant issuedAt = LocalDateTime.now(clock).toInstant(ZoneOffset.UTC);
-        Instant expiresAfter = issuedAt.plus(Duration.ofMinutes(properties.expirationMinutes()));
+    public String authenticateAndGenerateToken(String username, String password) {
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(username, password);
+        Authentication authenticate = authenticationManager.authenticate(authentication);
+        SecurityUser user = (SecurityUser) authenticate.getPrincipal();
+        return createToken(user);
+    }
 
-        PrivateKey privateKey = keyPair.getPrivate();
-
-        Algorithm algorithm = Algorithm.RSA256(null, (RSAPrivateKey) privateKey);
+    private String createToken(SecurityUser user) {
+        Algorithm algorithm = Algorithm.RSA256(null, (RSAPrivateKey) keyPair.getPrivate()); // asymmetric key
+        long minutes = properties.expirationMinutes();
+        String issuer = properties.issuer();
+        Instant now = LocalDateTime.now(clock).toInstant(ZoneOffset.UTC);
+        Instant expiresAt = now.plus(Duration.ofMinutes(minutes));
         return JWT.create()
-                .withSubject(securityUser.getUsername())
-                .withIssuedAt(issuedAt)
-                .withExpiresAt(expiresAfter)
-                .withIssuer(properties.issuer())
-                .withClaim(ROLES_CLAIM, securityUser.getAuthoritiesAsString())
+                .withSubject(user.getUsername())
+                .withIssuedAt(now)
+                .withExpiresAt(expiresAt)
+                .withIssuer(issuer)
+                .withClaim(ROLES_CLAIM, user.getAuthoritiesAsString())
                 .sign(algorithm);
     }
 }

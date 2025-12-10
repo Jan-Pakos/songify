@@ -24,15 +24,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
-    private final KeyPair keyPair;
     public static final int TOKEN_START_INDEX = 7;
     public static final String AUTHORIZATION_HEADER = "Authorization";
     public static final String ROLES_CLAIM_NAME = "roles";
+    private final KeyPair keyPair;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String authorization = request.getHeader(AUTHORIZATION_HEADER);
-        if (authorization == null) {
+        if (authorization == null || !authorization.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -42,8 +42,6 @@ public class JwtAuthTokenFilter extends OncePerRequestFilter {
     }
 
     private UsernamePasswordAuthenticationToken getUsernamePasswordAuthenticationToken(String token) {
-//        String secretKey = properties.secret(); symmetric key IMPL
-//        JWTVerifier verifier = JWT.require(Algorithm.HMAC256(secretKey)).build(); // symmetric key IMPL
         JWTVerifier verifier = JWT.require(Algorithm.RSA256((RSAPublicKey) keyPair.getPublic(), null)).build(); // asymmetric key IMPL
         DecodedJWT jwt = verifier.verify(token.substring(TOKEN_START_INDEX));
         List<SimpleGrantedAuthority> authorities = jwt.getClaim(ROLES_CLAIM_NAME)

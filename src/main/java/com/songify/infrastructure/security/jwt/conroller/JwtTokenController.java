@@ -1,5 +1,6 @@
-package com.songify.infrastructure.security.jwt;
+package com.songify.infrastructure.security.jwt.conroller;
 
+import com.songify.infrastructure.security.jwt.JwtTokenGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
 
 @RestController
 @RequiredArgsConstructor
-public class JwtTokenController {
+class JwtTokenController {
 
     private final JwtTokenGenerator jwtTokenGenerator;
 

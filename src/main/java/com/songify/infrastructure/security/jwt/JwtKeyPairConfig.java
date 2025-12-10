@@ -22,8 +22,6 @@ class JwtKeyPairConfig {
         KeyPairGenerator generator = KeyPairGenerator.getInstance(ALGORITHM);
         generator.initialize(KEY_SIZE);
         KeyPair keyPair = generator.generateKeyPair();
-        log.info("public key: " + Base64.getEncoder().encodeToString(keyPair.getPublic().getEncoded()));
-        log.info("private key: " + Base64.getEncoder().encodeToString(keyPair.getPrivate().getEncoded()));
 
         saveKeyToFile("public_key.pem", keyPair.getPublic().getEncoded(), true);
         saveKeyToFile("private_key.pem", keyPair.getPrivate().getEncoded(), false);

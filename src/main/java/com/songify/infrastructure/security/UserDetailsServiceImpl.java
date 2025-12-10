@@ -19,9 +19,12 @@ class UserDetailsServiceImpl implements UserDetailsManager {
     private final PasswordEncoder passwordEncoder;
     public static final String DEFAULT_USER_ROLE = "ROLE_USER";
 
+    // UserDetailsServiceImpl.java
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return null;
+        return userRepository.findFirstByEmail(username)
+                .map(SecurityUser::new)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
     }
 
     @Override

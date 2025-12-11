@@ -11,5 +11,4 @@ public interface UserRepository extends Repository<User, Long> {
 
     boolean existsByEmail(String email);
 
-
 }

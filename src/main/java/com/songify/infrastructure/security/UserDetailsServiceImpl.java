@@ -8,18 +8,19 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.UserDetailsManager;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Log4j2
 @AllArgsConstructor
+@Service
 class UserDetailsServiceImpl implements UserDetailsManager {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     public static final String DEFAULT_USER_ROLE = "ROLE_USER";
 
-    // UserDetailsServiceImpl.java
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findFirstByEmail(username)
@@ -43,17 +44,17 @@ class UserDetailsServiceImpl implements UserDetailsManager {
 
     @Override
     public void updateUser(UserDetails user) {
-
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
     public void deleteUser(String username) {
-
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
     public void changePassword(String oldPassword, String newPassword) {
-
+        throw new RuntimeException("Not implemented");
     }
 
     public boolean userExists(String username) {

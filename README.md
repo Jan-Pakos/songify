@@ -10,6 +10,6 @@ A robust REST API engineered as a **Modular Monolith** using **Java 21**. It uti
 * **Java 21 Virtual Threads (Project Loom)** for high concurrency.
 * **Spring Security** and **OAuth2** framework.
 * **Hibernate** ORM, with **Dockerized PostgreSQL** database instance.
-* **automated via GitHub Actions**, to auto test after every push. 
+* **GitHub Actions Automation**, to auto test after every push. 
 * **JUnit** and **Integration testing** **automated via GitHub Actions**, to auto test after every push. 
 * **Swagger**, alongside detailed technical, user, and security requirement specifications.

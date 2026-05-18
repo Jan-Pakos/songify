@@ -25,6 +25,6 @@ class GenreRetriever {
     public Genre findGenreById(Long genreId) {
         return genreRepository
                 .findById(genreId)
-                .orElseThrow(() -> new GenreNotFoundException("Genre with id: " + genreId + " not found" ));
+                .orElseThrow(() -> new GenreNotFoundException("Genre with id: " + genreId + " not found"));
     }
 }

@@ -10,7 +10,7 @@ class GenreAssigner {
     private final SongRetriever songRetriever;
     private final GenreRetriever genreRetriever;
 
-    void assignGenre(Long genreId, Long songId){
+    void assignGenre(Long genreId, Long songId) {
         Song song = songRetriever.findSongById(songId);
         Genre genre = genreRetriever.findGenreById(genreId);
         song.setGenre(genre);

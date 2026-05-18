@@ -16,15 +16,18 @@ public record AlbumResponseDto(
             String name,
             Long duration,
             GenreDto genre
-    ) {}
+    ) {
+    }
 
     public record GenreDto(
             String name
-    ) {}
+    ) {
+    }
 
     public record ArtistDto(
             Long id,
             String name
-    ) {}
+    ) {
+    }
 }
 

@@ -41,7 +41,7 @@ class SecurityConfig {
 
         http.cors(corsConfigurerCustomizer());
         http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
-                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/", "/users/register/**").permitAll()
+                .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/", "/users/register/**", "/actuator/**").permitAll()
                 .requestMatchers(HttpMethod.GET, "/songs/**", "/artists/**", "/albums/**", "/genres/**").permitAll()
 
                 .requestMatchers(HttpMethod.POST, "/**").hasRole("ADMIN")

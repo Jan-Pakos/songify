@@ -4,9 +4,9 @@ import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
-import java.io.Serializable;
 import java.util.UUID;
 
 @MappedSuperclass
